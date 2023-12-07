@@ -16,6 +16,8 @@ local plugins = {
   },
   {
     "wakatime/vim-wakatime",
+    lazy = false,
+    priority = 1000,
   },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -79,17 +81,6 @@ local plugins = {
     config = function()
       require "custom.configs.dapgo"
     end
-  },
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "mfussenegger/nvim-dap",
-    },
-    opts = {
-      handlers = {},
-    }
   },
   -- nice theme for working
   {
