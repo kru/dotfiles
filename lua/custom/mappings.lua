@@ -11,10 +11,14 @@ M.dap = {
       "<cmd> DapContinue <CR>",
       "Run or continue the debugger"
     },
-    ["<S-F5>"] = {
-      "<cmd> DapStepover <CR>",
+    ["<F1>"] = {
+      "<cmd> DapStepOver <CR>",
       "Step continue"
-    }
+    },
+    ["<F2>"] = {
+      "<cmd> DapContinue <CR>",
+      "Step continue"
+    },
   },
 }
 

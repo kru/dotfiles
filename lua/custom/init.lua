@@ -34,8 +34,3 @@ for _, plugin in pairs(enable_providers) do
   vim.cmd("runtime " .. plugin)
 end
 
---dap map key for debugging
--- vim.keymap.set('n', '<S-F5>', ":lua require'dap'.continue()<CR>")
--- vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
--- vim.keymap.set('n', '<F11>', function() require('dap').step_into() end)
--- vim.keymap.set('n', '<F12>', function() require('dap').step_out() end)

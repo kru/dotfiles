@@ -9,7 +9,6 @@ local plugins = {
         "prettier",
         "js-debug-adapter",
         "clangd",
-        "codelldb",
         "rust-analyzer",
       },
     },
@@ -19,9 +18,9 @@ local plugins = {
     lazy = false,
     priority = 1000,
   },
-  {
-    "williamboman/mason-lspconfig.nvim",
-  },
+  -- {
+  --   "williamboman/mason-lspconfig.nvim",
+  -- },
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -72,7 +71,7 @@ local plugins = {
   {
     "mfussenegger/nvim-dap",
     config = function()
-      require "custom.configs.dap"
+      require "custom.configs.dapcpp"
       require("core.utils").load_mappings("dap")
     end
   },
