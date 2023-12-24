@@ -9,6 +9,7 @@ local on_attach = function(_, bufnr)
 	-- for LSP related items. It sets the mode, buffer and description for us each time.
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+	local bufopts = { noremap=true, silent=true, buffer=bufnr }
 	local nmap = function(keys, func, desc)
 		if desc then
 			desc = 'LSP: ' .. desc
@@ -42,6 +43,8 @@ local on_attach = function(_, bufnr)
 	vim.keymap.set("n", "<leader>fm", function() vim.lsp.buf.format() end,
 		{ buffer = bufnr, desc = "format current file" })
 end
+
+-- LSP Stuff
 require('mason').setup()
 require('mason-lspconfig').setup()
 local servers = {
@@ -95,6 +98,25 @@ mason_lspconfig.setup_handlers {
 		}
 	end,
 }
+
+capabilities.textDocument.completion.completionItem = {
+	documentationFormat = { "markdown", "plaintext" },
+	snippetSupport = true,
+	preselectSupport = true,
+	insertReplaceSupport = true,
+	labelDetailsSupport = true,
+	deprecatedSupport = true,
+	commitCharactersSupport = true,
+	tagSupport = { valueSet = { 1 } },
+	resolveSupport = {
+		properties = {
+			"documentation",
+			"detail",
+			"additionalTextEdits",
+		},
+	},
+}
+
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
 local cmp = require "cmp"

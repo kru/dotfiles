@@ -1,6 +1,5 @@
 return {
   {
-
     "williamboman/mason.nvim",
     cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
     opts = {
@@ -31,6 +30,9 @@ return {
 
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    init = function()
+      require("customs.utils").lazy_load("nvim-lspconfig")
+    end,
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',

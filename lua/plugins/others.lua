@@ -16,9 +16,12 @@ local M = {
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
+  init = function()
+    require("customs.utils").lazy_load("indent-blankline.nvim")
+  end,
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
-    main = 'ibl',
+    main = "ibl",
     opts = {
       -- indentLine_enabled = 1,
       exclude = {

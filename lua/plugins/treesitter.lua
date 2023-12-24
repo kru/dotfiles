@@ -1,6 +1,9 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
+  init = function()
+    require("customs.utils").lazy_load("nvim-treesitter")
+  end,
   config = function()
     vim.defer_fn(function()
       local configs = require("nvim-treesitter.configs")
