@@ -147,6 +147,12 @@ local M = {
       version = "*",
       opts = {
         direction = 'float',
+        float_opts = {
+          border = "curved",
+          width = 120,
+          height = 30,
+          windblend = 3
+        }
         --[[ things you want to change go here]] }
     }
   }

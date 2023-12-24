@@ -12,6 +12,7 @@ return {
         "js-debug-adapter",
         "clangd",
         "rust-analyzer",
+        "zls",
         "lua-language-server",
       },
     },
