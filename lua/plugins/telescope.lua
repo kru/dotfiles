@@ -1,7 +1,8 @@
 return {
 	{
 
-		'nvim-telescope/telescope.nvim', tag = '0.1.5',
+		'nvim-telescope/telescope.nvim',
+		tag = '0.1.5',
 		dependencies = {
 			'nvim-lua/plenary.nvim',
 			{
@@ -34,7 +35,8 @@ return {
 			local builtin = require("telescope.builtin")
 			vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 			vim.keymap.set('n', '<leader>fw', builtin.live_grep, {})
-			vim.keymap.set('n', '<leader>ls', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+			vim.keymap.set('n', '<leader>ls', require('telescope.builtin').oldfiles,
+				{ desc = '[?] Find recently opened files' })
 			vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 			require('telescope').setup(opts)
 		end
@@ -42,7 +44,10 @@ return {
 	{
 
 		"nvim-telescope/telescope-file-browser.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"nvim-lua/plenary.nvim" },
 		opts = {
 			extensions = {
 				file_browser = {
@@ -51,15 +56,15 @@ return {
 					hijack_netrw = true,
 					mappings = {
 					},
-				initial_mode = "insert",
+					initial_mode = "insert",
 				},
 			},
 		},
 		config = function(_, opts)
-			vim.api.nvim_set_keymap("n","<leader>fb",":Telescope file_browser path=%:p:h select_buffer=true<CR>",{ noremap = true })
+			vim.api.nvim_set_keymap("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+				{ noremap = true })
 			require("telescope").setup(opts)
 			require("telescope").load_extension "file_browser"
 		end
 	}
 }
-
