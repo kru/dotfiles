@@ -11,7 +11,7 @@ vim.opt.smartcase = true
 vim.opt.mouse = "a"
 
 -- Numbers
-vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.numberwidth = 2
 vim.opt.ruler = false
 
@@ -31,6 +31,13 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", {})
 vim.keymap.set("n", "<C-l>", "<C-w>l", {})
 vim.keymap.set("n", "<C-j>", "<C-w>j", {})
 vim.keymap.set("n", "<C-k>", "<C-w>k", {})
+
+-- tmux addition to move between panes
+vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", {})
+vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", {})
+vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", {})
+vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", {})
+
 
 -- save file
 vim.keymap.set("n", "<C-s>", "<cmd> w <CR>", {})

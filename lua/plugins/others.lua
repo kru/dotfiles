@@ -155,6 +155,10 @@ local M = {
         }
         --[[ things you want to change go here]] }
     }
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
   }
 }
 

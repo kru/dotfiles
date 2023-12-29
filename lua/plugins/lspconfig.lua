@@ -7,7 +7,7 @@ return {
         "gopls",
         "gofumpt",
         "typescript-language-server",
-        "eslint-lsp",
+        "eslint_d",
         "prettier",
         "js-debug-adapter",
         "clangd",
