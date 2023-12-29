@@ -106,3 +106,5 @@ vim.keymap.set("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "Ad
 vim.keymap.set("n", "<leader>dr", "<cmd> DapContinue <CR>", { desc = "Run or continu the debugger"})
 vim.keymap.set("n", "<F1>", "<cmd> DapStepOver <CR>", { desc = "Step over"})
 vim.keymap.set("n", "<F2>", "<cmd> DapContinue <CR>", { desc = "Step continue"})
+
+
