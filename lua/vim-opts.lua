@@ -41,6 +41,9 @@ vim.keymap.set("n", "<C-c>", "<cmd> %y+ <CR>", {})
 vim.keymap.set("n", "<leader>n", "<cmd> set nu! <CR>", {})
 vim.keymap.set("n", "<leader>rn", "<cmd> set rnu! <CR>", {})
 
+-- move to last buffer
+vim.keymap.set("n", "<Tab>", "<cmd>:b#<CR>", {desc = "Move to the last buffer"})
+
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
 -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
 -- empty mode is same as using <cmd> :map
@@ -102,4 +105,4 @@ vim.o.termguicolors = true
 vim.keymap.set("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "Add breakpoint at line"})
 vim.keymap.set("n", "<leader>dr", "<cmd> DapContinue <CR>", { desc = "Run or continu the debugger"})
 vim.keymap.set("n", "<F1>", "<cmd> DapStepOver <CR>", { desc = "Step over"})
-vim.keymap.set("n", "<F1>", "<cmd> DapContinue <CR>", { desc = "Step continue"})
+vim.keymap.set("n", "<F2>", "<cmd> DapContinue <CR>", { desc = "Step continue"})

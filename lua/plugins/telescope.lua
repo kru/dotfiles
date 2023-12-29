@@ -35,9 +35,9 @@ return {
 			local builtin = require("telescope.builtin")
 			vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 			vim.keymap.set('n', '<leader>fw', builtin.live_grep, {})
-			vim.keymap.set('n', '<leader>ls', require('telescope.builtin').oldfiles,
+			vim.keymap.set('n', '<leader>ls', builtin.oldfiles,
 				{ desc = '[?] Find recently opened files' })
-			vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+			vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 			require('telescope').setup(opts)
 		end
 	},
@@ -47,7 +47,8 @@ return {
 		dependencies = {
 			"nvim-telescope/telescope.nvim",
 			"nvim-tree/nvim-web-devicons",
-			"nvim-lua/plenary.nvim" },
+			"nvim-lua/plenary.nvim"
+		},
 		opts = {
 			extensions = {
 				file_browser = {
