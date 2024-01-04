@@ -28,4 +28,5 @@ stow -t ~/.config/alacritty alacritty
 *NOTE*: Please make sure the path is exist (either create the new path or specify other path)
 
 **DISCLAIMER**
+
 This is personal dev configurations, so use with caution as the workflow between us different
