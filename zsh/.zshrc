@@ -111,6 +111,7 @@ alias qalr='ssh -N -L 3307:qa-master-db.kw-qa-us-east1.kw.com:3306 kristoforusrp
 alias devlr='ssh -N -L 3307:dev-master-db.kw-dev-us-east1.kw.com:3306 kristoforusrp@bastion-mysql.kw-dev-us-east1.kw.com'
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias vim='/usr/local/bin/nvim'
+alias vi='/usr/bin/vim'
 
 
 export GOPATH=$HOME/go
