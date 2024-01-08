@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/kr_pamungkas/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -102,46 +102,26 @@ export NVM_DIR=~/.nvm
 
 eval "$(fasd --init auto)"
 
-#alias python='python3'
 alias zshrefresh='source ~/.zshrc'
 alias gitlocaluser='git config --local credential.helper ""'
-alias goland='/usr/local/bin/goland'
 alias z='fasd_cd -d'
-alias qalr='ssh -N -L 3307:qa-master-db.kw-qa-us-east1.kw.com:3306 kristoforusrp@bastion-mysql.kw-qa-us-east1.kw.com'
-alias devlr='ssh -N -L 3307:dev-master-db.kw-dev-us-east1.kw.com:3306 kristoforusrp@bastion-mysql.kw-dev-us-east1.kw.com'
-alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
-alias vim='/usr/local/bin/nvim'
+alias vim='nvim'
 alias vi='/usr/bin/vim'
+# alias ls='ls -l'
+#alias python='python3'
 
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/go/bin
-#export ANDROID_HOME=/Users/krisrp/Library/Android/sdk/
-#export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-#export JAVA_HOME=$(/usr/libexec/java_home)
-#export PATH="/usr/local/opt/php@7.3/bin:$PATH"
-#export PATH="/usr/local/opt/php@7.3/sbin:$PATH"
-#export PATH=$PATH:$HOME/shellapp
-#export PATH=$PATH:$HOME/.composer/vendor/bin
-export GPG_TTY=$(tty)
+# export GPG_TTY=$(tty)
 
-#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/apple/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/apple/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/apple/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/apple/google-cloud-sdk/completion.zsh.inc'; fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-#export PATH=$(pyenv root)/shims:$PATH
-export VAULT_ADDR=https://vault.cloud.kw.com
-export VAULT_TOKEN=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
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH=$PATH:$HOME/Downloads/google-cloud-sdk/bin
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 export PATH=/usr/local/bin:$PATH
 export LC_ALL="en_US.UTF-8"
 
+#export PATH="/opt/nvim-linux64/bin:$PATH"
