@@ -5,8 +5,8 @@ opacity=0.9
 startup_mode="Fullscreen"
 option_as_alt="Both"
 
-[shell]
-program="/usr/local/bin/tmux"
+#[shell]
+# program="/usr/local/bin/tmux"
 # args=["new-session", "-A", "-D", "-s", "main"]
 
 [font]
