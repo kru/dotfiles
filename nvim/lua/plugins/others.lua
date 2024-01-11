@@ -16,9 +16,9 @@ local M = {
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
-  init = function()
-    require("customs.utils").lazy_load("indent-blankline.nvim")
-  end,
+    init = function()
+      require("customs.utils").lazy_load("indent-blankline.nvim")
+    end,
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = "ibl",
@@ -159,6 +159,15 @@ local M = {
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
   }
 }
 
