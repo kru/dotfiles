@@ -1,6 +1,6 @@
 " Netrw
 let g:netrw_banner = 0
-let g:netrw_liststyle = 3
+let g:netrw_liststyle = 2
 
 set path+=**
 set wildmenu
@@ -37,3 +37,4 @@ set showmode
 
 " Set the commands to save in history
 set history=1000
+
