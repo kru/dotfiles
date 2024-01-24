@@ -6,8 +6,8 @@ return {
 		vim.cmd.colorscheme "tokyonight-moon"
 		local tokyonight = require("tokyonight")
 		tokyonight.setup({
-			style = "storm",
-			light_style = "storm",
+			style = "moon",
+			light_style = "moon",
 			terminal_color = true,
 			-- disable italic for functions
 			styles = {

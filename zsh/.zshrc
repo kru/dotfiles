@@ -105,7 +105,7 @@ eval "$(fasd --init auto)"
 alias zshrefresh='source ~/.zshrc'
 alias gitlocaluser='git config --local credential.helper ""'
 alias z='fasd_cd -d'
-alias vim='nvim'
+alias vim='/usr/bin/nvim'
 alias vi='/usr/bin/vim'
 # alias ls='ls -l'
 #alias python='python3'
