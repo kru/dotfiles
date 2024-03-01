@@ -35,6 +35,7 @@ return {
 			local builtin = require("telescope.builtin")
 			vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 			vim.keymap.set('n', '<leader>fw', builtin.live_grep, {})
+			vim.keymap.set('n', '<leader>fs', builtin.grep_string, {})
 			vim.keymap.set('n', '<leader>ls', builtin.oldfiles,
 				{ desc = '[?] Find recently opened files' })
 			vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
