@@ -97,15 +97,12 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export NVM_DIR=~/.nvm
- [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-
 eval "$(fasd --init auto)"
 
 alias zshrefresh='source ~/.zshrc'
 alias gitlocaluser='git config --local credential.helper ""'
 alias z='fasd_cd -d'
-alias vim='/usr/bin/nvim'
+alias vim='nvim'
 alias vi='/usr/bin/vim'
 # alias ls='ls -l'
 #alias python='python3'
@@ -120,8 +117,13 @@ export PATH=$PATH:$HOME/go/bin
 export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 export PATH=/usr/local/bin:$PATH
 export LC_ALL="en_US.UTF-8"
 
+export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
+export PATH="$PATH:$HOME/cosmocc/bin"
 #export PATH="/opt/nvim-linux64/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
