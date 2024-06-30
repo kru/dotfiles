@@ -109,6 +109,7 @@ alias vim='/usr/bin/nvim'
 alias vi='/usr/bin/vim'
 # alias ls='ls -l'
 #alias python='python3'
+alias datagrip='/opt/DataGrip-2024.1.1/bin/datagrip.sh'
 
 
 export GOPATH=$HOME/go
@@ -126,3 +127,4 @@ export LC_ALL="en_US.UTF-8"
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/usr/local/go/bin
 #export PATH="/opt/nvim-linux64/bin:$PATH"
+export PATH=$PATH:/opt/DataGrip-2024.1.1/bin

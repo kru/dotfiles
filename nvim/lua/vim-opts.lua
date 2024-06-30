@@ -3,7 +3,7 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.smartindent = true
 vim.opt.tabstop = 4
-vim.opt.softtabstop = 2
+vim.opt.softtabstop = 4
 
 vim.opt.fillchars = { eob = " " }
 vim.opt.ignorecase = true
@@ -25,7 +25,6 @@ vim.keymap.set("i", "<C-l>", "<Right>", {})
 vim.keymap.set("i", "<C-j>", "<Down>", {})
 vim.keymap.set("i", "<C-k>", "<Up>", {})
 
-
 -- move between windows
 vim.keymap.set("n", "<C-h>", "<C-w>h", {})
 vim.keymap.set("n", "<C-l>", "<C-w>l", {})
@@ -38,7 +37,6 @@ vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", {})
 vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", {})
 vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", {})
 
-
 -- save file
 vim.keymap.set("n", "<C-s>", "<cmd> w <CR>", {})
 -- copy all file content
@@ -49,7 +47,7 @@ vim.keymap.set("n", "<leader>n", "<cmd> set nu! <CR>", {})
 vim.keymap.set("n", "<leader>rn", "<cmd> set rnu! <CR>", {})
 
 -- move to last buffer
-vim.keymap.set("n", "<Tab>", "<cmd>:b#<CR>", {desc = "Move to the last buffer"})
+vim.keymap.set("n", "<Tab>", "<cmd>:b#<CR>", { desc = "Move to the last buffer" })
 
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
 -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -83,7 +81,7 @@ vim.wo.number = true
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+vim.o.clipboard = "unnamedplus"
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -96,23 +94,25 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
 
 -- Decrease update time
 vim.o.updooetime = 250
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = "menuone,noselect"
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
 -- DAP custom mapping
-vim.keymap.set("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "Add breakpoint at line"})
-vim.keymap.set("n", "<leader>dr", "<cmd> DapContinue <CR>", { desc = "Run or continu the debugger"})
-vim.keymap.set("n", "<F1>", "<cmd> DapStepOver <CR>", { desc = "Step over"})
-vim.keymap.set("n", "<F2>", "<cmd> DapContinue <CR>", { desc = "Step continue"})
+vim.keymap.set("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "Add breakpoint at line" })
+vim.keymap.set("n", "<leader>dr", "<cmd> DapContinue <CR>", { desc = "Run or continu the debugger" })
+vim.keymap.set("n", "<F1>", "<cmd> DapStepOver <CR>", { desc = "Step over" })
+vim.keymap.set("n", "<F2>", "<cmd> DapContinue <CR>", { desc = "Step continue" })
 
 -- folke/trouble.nvim mapping
-vim.keymap.set("n", "<leader>e", function() require("trouble").toggle("workspace_diagnostics") end)
+vim.keymap.set("n", "<leader>e", function()
+	require("trouble").toggle("workspace_diagnostics")
+end)

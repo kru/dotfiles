@@ -2,16 +2,16 @@
 [window]
 decorations="Transparent"
 opacity=0.9
-startup_mode="Fullscreen"
+startup_mode="Maximized"
 option_as_alt="Both"
 
-#[shell]
+# [shell]
 # program="/usr/local/bin/tmux"
 # args=["new-session", "-A", "-D", "-s", "main"]
 
 [font]
-normal={family="JetBrainsMono NF", style="Regular"}
-size=20
+normal={family="JetBrainsMono NF", style="Semibold"}
+size=12
 
 [cursor]
 style="Underline"
