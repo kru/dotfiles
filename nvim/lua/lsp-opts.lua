@@ -109,7 +109,7 @@ mason_lspconfig.setup_handlers {
 }
 
 capabilities.textDocument.completion.completionItem = {
-	documentationFormat = { "markdown", "plaintext" },
+	documentationFormat = { "markdown" },
 	snippetSupport = true,
 	preselectSupport = true,
 	insertReplaceSupport = true,

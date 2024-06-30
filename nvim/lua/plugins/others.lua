@@ -176,6 +176,7 @@ local M = {
 			format_on_save = {
 				timeout_ms = 500,
 				lsp_fallback = true,
+				ignore_file_types = { "h" }
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
