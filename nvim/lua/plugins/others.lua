@@ -29,6 +29,7 @@ local M = {
 				filetypes = {
 					"zig",
 					"c",
+					"h",
 					"rust",
 					"go",
 					"javascript",
@@ -176,7 +177,7 @@ local M = {
 			format_on_save = {
 				timeout_ms = 500,
 				lsp_fallback = true,
-				ignore_file_types = { "h" }
+				ignore_file_types = { "h" },
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
@@ -188,6 +189,17 @@ local M = {
 				-- javascript = { { "prettierd", "prettier" } },
 			},
 		},
+		config = function(_, opts)
+			require("conform").setup({
+				format_on_save = function(bufnr)
+					-- Disable with a global or buffer-local variable
+					if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+						return
+					end
+					return opts
+				end,
+			})
+		end,
 	},
 	{ "nvim-neotest/nvim-nio" },
 }

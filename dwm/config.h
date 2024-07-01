@@ -43,36 +43,16 @@ static const char *colors[][3] = {
 };
 
 static const char *const autostart[] = {
-    "xset",
-    "s",
-    "off",
-    NULL,
-    "xset",
-    "s",
-    "noblank",
-    NULL,
-    "xset",
-    "-dpms",
-    NULL,
-    "dbus-update-activation-environment",
-    "--systemd",
-    "--all",
-    NULL,
-    "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1",
-    NULL,
-    "flameshot",
-    NULL,
-    "dunst",
-    NULL,
-    "picom",
-    "--animations",
-    "-b",
-    NULL,
-    "sh",
-    "-c",
-    "feh --randomize --bg-fill "
-    "/home/r00t/Pictures/macOS-Big-Sur-The-Lake-4-dragged.jpg",
-    NULL,
+    "xset", "s", "off",     NULL,
+    "xset", "s", "noblank", NULL,
+    "xset", "-dpms",        NULL,
+    "dbus-update-activation-environment", "--systemd", "--all", NULL,
+    "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1",  NULL,
+    "flameshot",            NULL,
+    "dunst",                NULL,
+    "picom", "--animations", "-b", NULL,
+    "sh", "-c", "feh --randomize --bg-fill " "/home/r00t/Pictures/macOS-Big-Sur-The-Lake-4-dragged.jpg", NULL,
+    "slstatus",             NULL,
     NULL /* terminate */
 };
 
@@ -88,20 +68,17 @@ static const Rule rules[] = {
      *	WM_CLASS(STRING) = instance, class
      *	WM_NAME(STRING) = title
      */
-    /* class        instance    title           tags mask  isfloating isterminal
-       noswallow  monitor */
-    {"Brave", NULL, NULL, 2, 0, 0, 0, -1},
-    {"alacritty", NULL, NULL, 0, 0, 1, 0, -1},
-    {NULL, NULL, "Event Tester", 0, 0, 0, 1, -1}, /* xev */
+    /* class		instance	title		tags mask	isfloating isterminal	noswallow  monitor */
+    {"Brave", 		NULL,		NULL, 		2, 		0, 		0, 	0, 		-1},
+    {"alacritty", 	NULL, 		NULL, 		0, 		0, 		1, 	0, 		-1},
+    {NULL,		NULL, 		"Event Tester", 0, 		0, 		0, 	1, 		-1}, /* xev */
 };
 
 /* layout(s) */
 static const float mfact = 0.75; /* factor of master area size [0.05..0.95] */
 static const int nmaster = 1;    /* number of clients in master area */
-static const int resizehints =
-    0; /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen =
-    1; /* 1 will force focus on the fullscreen window */
+static const int resizehints = 0; /* 1 means respect size hints in tiled resizals */
+static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
     /* symbol     arrange function */

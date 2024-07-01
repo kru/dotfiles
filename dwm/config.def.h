@@ -1,11 +1,9 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int refresh_rate =
-    60; /* matches dwm's mouse event processing to your monitor's refresh rate
+static const unsigned int refresh_rate = 60; /* matches dwm's mouse event processing to your monitor's refresh rate
            for smoother window interactions */
-static const unsigned int enable_noborder =
-    1; /* toggles noborder feature (0=disabled, 1=enabled) */
+static const unsigned int enable_noborder = 1; /* toggles noborder feature (0=disabled, 1=enabled) */
 static const unsigned int borderpx = 1; /* border pixel of windows */
 static const unsigned int snap = 32;    /* snap pixel */
 static const int swallowfloating =
@@ -56,12 +54,11 @@ static const Rule rules[] = {
      *	WM_CLASS(STRING) = instance, class
      *	WM_NAME(STRING) = title
      */
-    /* class     instance  title           tags mask  isfloating  isterminal
-       noswallow  monitor */
-    {"Gimp", NULL, NULL, 0, 1, 0, 0, -1},
-    {"Firefox", NULL, NULL, 1 << 8, 0, 0, -1, -1},
-    {"St", NULL, NULL, 0, 0, 1, 0, -1},
-    {NULL, NULL, "Event Tester", 0, 0, 0, 1, -1}, /* xev */
+    /* class        instance    title           tags mask  isfloating  isterminal noswallow  monitor */
+    {"Gimp",        NULL,       NULL,           0,          1,          0,          0,          -1},
+    {"Firefox",     NULL,       NULL,           1 << 8,     0,          0,          -1,         -1},
+    {"St",          NULL,       NULL,           0,          0,          1,          0,          -1},
+    {NULL,          NULL,       "Event Tester", 0,          0,          0,          1,          -1}, /* xev */
 };
 
 /* layout(s) */
