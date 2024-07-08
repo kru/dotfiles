@@ -46,6 +46,13 @@ vim.keymap.set("n", "<C-c>", "<cmd> %y+ <CR>", {})
 vim.keymap.set("n", "<leader>n", "<cmd> set nu! <CR>", {})
 vim.keymap.set("n", "<leader>rn", "<cmd> set rnu! <CR>", {})
 
+-- move down and center
+vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true })
+-- move up and center
+vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
+-- keep yank on reg
+vim.api.nvim_set_keymap("x", "<leader>p", "\"_dP", { noremap = true })
+
 -- move to last buffer
 vim.keymap.set("n", "<Tab>", "<cmd>:b#<CR>", { desc = "Move to the last buffer" })
 

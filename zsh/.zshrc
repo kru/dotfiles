@@ -110,6 +110,7 @@ alias vi='/usr/bin/vim'
 # alias ls='ls -l'
 #alias python='python3'
 alias datagrip='/opt/DataGrip-2024.1.1/bin/datagrip.sh'
+alias bitwarden='/opt/Bitwarden-2024.6.4-x86_64.AppImage'
 
 
 export GOPATH=$HOME/go
