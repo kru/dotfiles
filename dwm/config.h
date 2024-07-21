@@ -26,9 +26,14 @@ static const int topbar = 1;      /* 0 means bottom bar */
 #define ICONSIZE 17               /* icon size */
 #define ICONSPACING 5             /* space between icon and title */
 #define SHOWWINICON 1             /* 0 means no winicon */
+
 static const char *fonts[] = {
-    "JetBrainsMono NF:size=16:antialias=true;autohint=true",
-    "Ubuntu Mono:pixelsize=16:antialias=true:autohint=true"};
+    "Noto Sans Mono:size=12:antialias=true;autohint=true",
+    "Noto Sans Mono:pixelsize=14:antialias=true:autohint=true"};
+static const char dmenufont[] = {
+    "Noto Sans Mono:size=14:antialias=true;autohint=true",
+};
+
 static const char normbordercolor[] = "#3B4252";
 static const char normbgcolor[] = "#2E3440";
 static const char normfgcolor[] = "#D8DEE9";
@@ -47,7 +52,6 @@ static const char *const autostart[] = {
     "xset", "s", "noblank", NULL,
     "xset", "-dpms",        NULL,
     "dbus-update-activation-environment", "--systemd", "--all", NULL,
-    "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1",  NULL,
     "flameshot",            NULL,
     "dunst",                NULL,
     "picom", "--animations", "-b", NULL,

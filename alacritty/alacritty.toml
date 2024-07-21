@@ -14,7 +14,7 @@ normal={family="JetBrainsMono NF", style="Semibold"}
 size=12
 
 [cursor]
-style="Underline"
+style="Beam"
 
 [colors.primary]
 background="0x222436"
