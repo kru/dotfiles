@@ -120,10 +120,12 @@ export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
 export LC_ALL="en_US.UTF-8"
 
-export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 export PATH="$PATH:$HOME/cosmocc/bin"
+export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:/usr/local/go/bin
 #export PATH="/opt/nvim-linux64/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+

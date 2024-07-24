@@ -11,7 +11,7 @@ option_as_alt="Both"
 
 [font]
 normal={family="JetBrainsMono NF", style="Regular"}
-size=16
+size=15
 
 [cursor]
 style="Underline"

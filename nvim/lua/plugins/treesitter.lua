@@ -13,7 +13,7 @@ return {
         auto_install = false,
         sync_install = false,
         highlight = { enable = true },
-        indent = { enable = true },
+        indent = { enable = true, disable = { "go" } },
         ignore_install = {},
         modules = {},
         incremental_selection = {
@@ -21,7 +21,7 @@ return {
           keymaps = {
             init_selection = '<c-space>',
             node_incremental = '<c-space>',
-            scope_incremental = '<c-s>',
+            scope_incremental = '<c-i>',
             node_decremental = '<M-space>',
           },
         },
