@@ -104,6 +104,7 @@ alias gitlocaluser='git config --local credential.helper ""'
 alias z='fasd_cd -d'
 alias vim='nvim'
 alias vi='/usr/bin/vim'
+alias gosleep='sudo shutdown -s now'
 # alias ls='ls -l'
 #alias python='python3'
 

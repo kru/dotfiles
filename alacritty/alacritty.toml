@@ -1,8 +1,8 @@
 
 [window]
-decorations="Transparent"
+decorations="Buttonless"
 opacity=0.9
-startup_mode="Fullscreen"
+startup_mode="Windowed"
 option_as_alt="Both"
 
 #[shell]
