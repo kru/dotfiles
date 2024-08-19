@@ -6,12 +6,6 @@ install_debian() {
     sudo apt install -y libconfig-dev libdbus-1-dev libegl-dev libev-dev libgl-dev libepoxy-dev libpcre2-dev libpixman-1-dev libx11-xcb-dev libxcb1-dev libxcb-composite0-dev libxcb-damage0-dev libxcb-dpms0-dev libxcb-glx0-dev libxcb-image0-dev libxcb-present-dev libxcb-randr0-dev libxcb-render0-dev libxcb-render-util0-dev libxcb-shape0-dev libxcb-util-dev libxcb-xfixes0-dev libxext-dev meson ninja-build uthash-dev cmake
 }
 
-# Function to install dependencies for Arch-based distributions
-install_arch() {
-    sudo pacman -Syu --noconfirm
-    sudo pacman -S --noconfirm base-devel libconfig dbus libev libx11 libxcb libxext libgl libegl libepoxy meson pcre2 pixman uthash xcb-util-image xcb-util-renderutil xorgproto cmake
-}
-
 # Detect the distribution and install the appropriate packages
 if [ -f /etc/os-release ]; then
     . /etc/os-release
@@ -19,14 +13,6 @@ if [ -f /etc/os-release ]; then
         debian|ubuntu)
             echo "Detected Debian-based distribution"
             install_debian
-            ;;
-        rhel|centos|fedora)
-            echo "Detected Red Hat-based distribution"
-            install_redhat
-            ;;
-        arch)
-            echo "Detected Arch-based distribution"
-            install_arch
             ;;
         *)
             echo "Unsupported distribution"

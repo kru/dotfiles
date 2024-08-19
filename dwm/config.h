@@ -55,7 +55,7 @@ static const char *const autostart[] = {
     "flameshot",            NULL,
     "dunst",                NULL,
     "picom", "--animations", "-b", NULL,
-    "sh", "-c", "feh --randomize --bg-fill " "/home/r00t/Pictures/macOS-Big-Sur-The-Lake-4-dragged.jpg", NULL,
+    "sh", "-c", "feh --randomize --bg-fill " "~/Pictures/macOS-Big-Sur-The-Lake-4-dragged.jpg", NULL,
     "slstatus",             NULL,
     NULL /* terminate */
 };
@@ -112,10 +112,9 @@ static const char *termcmd[] = {"alacritty", NULL};
 static Key keys[] = {
     /* modifier                     key            function argument */
     {MODKEY, XK_space, spawn, {.v = launchercmd}},
-    {MODKEY | ControlMask, XK_r, spawn, SHCMD("protonrestart")},
     {MODKEY, XK_x, spawn, {.v = termcmd}},
     {MODKEY, XK_b, spawn, SHCMD("xdg-open https://")},
-    {MODKEY, XK_p, spawn, SHCMD("flameshot full -p /home/r00t/Screenshots/")},
+    {MODKEY, XK_p, spawn, SHCMD("flameshot full -p ~/Screenshots/")},
     {MODKEY | ShiftMask, XK_p, spawn,
      SHCMD("flameshot gui -p /home/r00t/Screenshots/")},
     {MODKEY | ControlMask, XK_p, spawn, SHCMD("flameshot gui --clipboard")},
