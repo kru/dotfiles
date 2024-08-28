@@ -54,7 +54,7 @@ static const char *const autostart[] = {
     "dbus-update-activation-environment", "--systemd", "--all", NULL,
     "flameshot",            NULL,
     "dunst",                NULL,
-    // "picom", "--animations", "-b", NULL,
+    "picom",  "-b", NULL,
     "sh", "-c", "feh --randomize --bg-fill " "~/Pictures/macOS-Big-Sur-The-Lake-4-dragged.jpg", NULL,
     "slstatus",             NULL,
     NULL /* terminate */
