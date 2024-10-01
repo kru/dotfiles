@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=0.9
+Name=Alacritty
+Comment=Terminal
+Exec=/home/r00t/.cargo/bin/alacritty %U
+Icon=/home/r00t/Pictures/alacritty.png
+Terminal=false
+StartupWMClass=Alacritty
+Type=Application
+Categories=Application;Developer;
+# MimeType=Type of application it should open
