@@ -2,7 +2,7 @@ return {
 	{
 
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.5",
+		tag = "0.1.8",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			{
@@ -18,11 +18,12 @@ return {
 		opts = {
 			defaults = {
 				mappings = {},
-				layout_strategy = "horizontal",
+				layout_strategy = "vertical",
 				layout_config = {
-					horizontal = {
+					vertical = {
 						prompt_position = "top",
-						width = 0.9,
+						mirror = true,
+						width = 0.7,
 					},
 				},
 				sorting_strategy = "ascending",
