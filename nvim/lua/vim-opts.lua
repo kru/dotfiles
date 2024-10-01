@@ -121,5 +121,5 @@ vim.keymap.set("n", "<F2>", "<cmd> DapContinue <CR>", { desc = "Step continue" }
 
 -- folke/trouble.nvim mapping
 vim.keymap.set("n", "<leader>e", function()
-	require("trouble").toggle("workspace_diagnostics")
+	require("trouble").toggle("diagnostics")
 end)
