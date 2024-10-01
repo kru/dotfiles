@@ -1,2 +1,5 @@
 xterm*faceName: JetBrainsMonoNL NFP
 xterm*faceSize: 14
+xft.dpi: 192
+Xft.antialias: true
+Xft.hinting: true

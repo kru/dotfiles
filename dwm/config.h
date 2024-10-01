@@ -28,10 +28,10 @@ static const int topbar = 1;      /* 0 means bottom bar */
 #define SHOWWINICON 1             /* 0 means no winicon */
 
 static const char *fonts[] = {
-    "Noto Sans Mono:size=12:antialias=true;autohint=true",
-    "Noto Sans Mono:pixelsize=14:antialias=true:autohint=true"};
+    "Monospace:size=14",
+    "Ubuntu:style=Regular:pixelsize=14:antialias=true:autohint=true"};
 static const char dmenufont[] = {
-    "Noto Sans Mono:size=14:antialias=true;autohint=true",
+    "Ubuntu:style=Regular:size=14:antialias=true:autohint=true",
 };
 
 static const char normbordercolor[] = "#3B4252";
