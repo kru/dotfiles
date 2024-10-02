@@ -49,7 +49,10 @@ vim.keymap.set("n", "<leader>n", "<cmd> set nu! <CR>", {})
 vim.keymap.set("n", "<leader>rn", "<cmd> set rnu! <CR>", {})
 
 -- move to last buffer
-vim.keymap.set("n", "<S-b>", "<cmd>:b#<CR>", { desc = "Move to the last buffer" })
+vim.keymap.set("n", "<leader>b", "<cmd>:b#<CR>", { desc = "Move to the last buffer" })
+-- new buffer
+-- vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", {})
+
 
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
 -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -59,9 +62,6 @@ vim.keymap.set("n", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr 
 vim.keymap.set("n", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
 vim.keymap.set("n", "<Up>", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
 vim.keymap.set("n", "<Down>", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
-
--- new buffer
-vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", {})
 
 -- escape terminal mode
 vim.keymap.set("t", "<C-x>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), {})
