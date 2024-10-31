@@ -54,7 +54,10 @@ vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
 vim.api.nvim_set_keymap("x", "<leader>p", "\"_dP", { noremap = true })
 
 -- move to last buffer
-vim.keymap.set("n", "<Tab>", "<cmd>:b#<CR>", { desc = "Move to the last buffer" })
+vim.keymap.set("n", "<leader>b", "<cmd>:b#<CR>", { desc = "Move to the last buffer" })
+
+-- new buffer
+-- vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", {})
 
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
 -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -64,9 +67,6 @@ vim.keymap.set("n", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr 
 vim.keymap.set("n", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
 vim.keymap.set("n", "<Up>", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
 vim.keymap.set("n", "<Down>", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
-
--- new buffer
-vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", {})
 
 -- escape terminal mode
 vim.keymap.set("t", "<C-x>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), {})
@@ -123,3 +123,53 @@ vim.keymap.set("n", "<F2>", "<cmd> DapContinue <CR>", { desc = "Step continue" }
 vim.keymap.set("n", "<leader>e", function()
 	require("trouble").toggle("diagnostics")
 end)
+
+local colors = {
+	fg         = "#e4e4e4", -- Soft Foreground for main text
+	white      = "#ffffff", -- Pure White for variables
+	black      = "#000000", -- Pure Black (not commonly used)
+	bg         = "#181818", -- Background
+	gray       = "#95a99f", -- Gray for comments
+	blue       = "#96a6c8", -- Blue for keywords
+	light_blue = "#b0c9ff", -- Light blue for data types
+	orange     = "#cc8c3c", -- Orange for function names
+	green      = "#73d936", -- Green for strings
+	yellow     = "#ffdd33", -- Yellow for specific text in strings if needed
+	red_minus1 = "#c73c3f", -- Muted Red
+}
+
+-- Helper function to set highlights
+local function highlight(group, fg, bg, attr)
+	local cmd = "highlight " .. group .. " guifg=" .. (fg or "NONE") ..
+		" guibg=" .. (bg or "NONE") ..
+		" gui=" .. (attr or "NONE")
+	vim.cmd(cmd)
+end
+
+-- Apply highlights
+highlight("Normal", colors.fg, colors.bg)
+highlight("Comment", colors.gray, nil, "italic") -- Comments in gray
+highlight("Keyword", colors.blue)                -- Keywords in blue
+highlight("Type", colors.light_blue)             -- Data types in light blue
+highlight("Function", colors.orange)             -- Function names in orange
+highlight("Identifier", colors.white)            -- Variables in white
+highlight("String", colors.green)                -- Strings in green
+highlight("Special", colors.light_blue)          -- For special keywords if needed
+highlight("Constant", colors.yellow)             -- Constants in yellow
+
+-- Line and other interface elements for balance
+highlight("LineNr", colors.gray, colors.bg)
+highlight("CursorLineNr", colors.white, colors.bg)
+highlight("StatusLine", colors.fg, colors.bg)
+highlight("Pmenu", colors.fg, colors.bg_plus2)
+highlight("PmenuSel", colors.fg, colors.blue)
+highlight("Visual", nil, colors.gray)
+highlight("Search", colors.bg, colors.blue)
+highlight("IncSearch", colors.bg, colors.orange)
+highlight("MatchParen", colors.fg, colors.bg)
+
+-- Diagnostic and error colors
+highlight("DiagnosticError", colors.red_minus1)
+highlight("DiagnosticWarn", colors.yellow)
+highlight("DiagnosticInfo", colors.blue)
+highlight("DiagnosticHint", colors.gray)
