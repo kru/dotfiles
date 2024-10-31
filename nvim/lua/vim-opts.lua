@@ -116,5 +116,134 @@ vim.keymap.set("n", "<F2>", "<cmd> DapContinue <CR>", { desc = "Step continue" }
 
 -- folke/trouble.nvim mapping
 vim.keymap.set("n", "<leader>e", function()
-	require("trouble").toggle("workspace_diagnostics")
+  require("trouble").toggle("workspace_diagnostics")
 end)
+
+-- Define background and color palette based on your provided colors
+vim.opt.background = "dark"
+vim.cmd("highlight clear")
+
+if vim.fn.exists("syntax_on") then
+  vim.cmd("syntax reset")
+end
+
+vim.g.colors_name = "refined_soft_elegance"
+
+-- Color definitions
+-- local colors = {
+--   fg         = "#e4e4e4", -- Soft Foreground
+--   fg_plus1   = "#f4f4ff", -- Lighter Foreground
+--   fg_plus2   = "#f5f5f5", -- Slightly Dimmed Foreground
+--   white      = "#ffffff", -- Pure White (use sparingly)
+--   black      = "#000000", -- Pure Black
+--   bg_minus1  = "#101010", -- Dark Background
+--   bg         = "#181818", -- Background
+--   bg_plus1   = "#282828", -- Slightly Lighter Background
+--   bg_plus2   = "#453d41", -- Lighter Background Accent
+--   bg_plus3   = "#484848", -- Muted Accent Background
+--   bg_plus4   = "#52494e", -- Softer Accent Background
+--   red_minus1 = "#c73c3f", -- Muted Red
+--   red        = "#f43841", -- Primary Red Accent (use minimally)
+--   red_plus1  = "#ff4f58", -- Brighter Red (use minimally)
+--   green      = "#73d936", -- Soft Green
+--   yellow     = "#ffdd33", -- Soft Yellow
+--   brown      = "#cc8c3c", -- Muted Brown
+--   quartz     = "#95a99f", -- Soft Neutral Grey
+--   niagara2   = "#303540", -- Dark Blue-Grey
+--   niagara1   = "#565f73", -- Muted Blue-Grey
+--   niagara    = "#96a6c8", -- Soft Blue
+--   wisteria   = "#9e95c7", -- Muted Purple
+--   gold       = "#d4af37", -- Muted Gold for Data Types
+--   teal       = "#5e9a8b", -- Muted Teal for Keywords
+-- }
+--
+-- -- Helper function to set highlights
+-- local function highlight(group, fg, bg, attr)
+--   local cmd = "highlight " .. group .. " guifg=" .. (fg or "NONE") ..
+--       " guibg=" .. (bg or "NONE") ..
+--       " gui=" .. (attr or "NONE")
+--   vim.cmd(cmd)
+-- end
+--
+-- -- Apply highlights for an elegant, balanced look
+-- highlight("Normal", colors.fg, colors.bg)
+-- highlight("Comment", colors.quartz, nil, "italic")
+-- highlight("Keyword", colors.yellow)
+-- highlight("String", colors.green)
+-- highlight("Function", colors.teal)
+-- highlight("Identifier", colors.niagara)
+-- highlight("Type", colors.gold)
+-- highlight("StorageClass",  colors.gold)        -- C storage classes in gold
+-- highlight("TypeBuiltin",   colors.gold)        -- Builtin types in gold
+-- highlight("Constant",      colors.gold)        -- Constants in gold
+-- highlight("Structure",      colors.yellow)
+-- highlight("Special",      colors.wisteria) -- int, char, float
+-- highlight("SpecialChar",      colors.gold)
+-- highlight("Visual", nil, colors.bg_plus3)
+-- highlight("LineNr", colors.quartz, colors.bg)
+-- highlight("CursorLineNr", colors.fg_plus1, colors.bg)
+-- highlight("StatusLine", colors.fg, colors.bg_plus1)
+-- highlight("Pmenu", colors.fg, colors.bg_plus2)
+-- highlight("PmenuSel", colors.fg, colors.niagara)
+-- highlight("Search", colors.bg, colors.niagara1)
+-- highlight("IncSearch", colors.bg, colors.niagara2)
+-- highlight("MatchParen", colors.fg_plus1, colors.bg_plus4)
+-- highlight("Todo", colors.yellow, nil, "bold")
+-- highlight("Error", colors.red_minus1, nil, "bold")
+-- highlight("WarningMsg", colors.brown, nil, "bold")
+
+-- LSP diagnostics in a softer color scheme
+-- highlight("DiagnosticError", colors.red_minus1)
+-- highlight("DiagnosticWarn", colors.yellow)
+-- highlight("DiagnosticInfo", colors.niagara)
+-- highlight("DiagnosticHint", colors.quartz)
+-- Define color palette based on the image
+local colors = {
+  fg         = "#e4e4e4", -- Soft Foreground for main text
+  white      = "#ffffff", -- Pure White for variables
+  black      = "#000000", -- Pure Black (not commonly used)
+  bg         = "#181818", -- Background
+  gray       = "#95a99f", -- Gray for comments
+  blue       = "#96a6c8", -- Blue for keywords
+  light_blue = "#b0c9ff", -- Light blue for data types
+  orange     = "#cc8c3c", -- Orange for function names
+  green      = "#73d936", -- Green for strings
+  yellow     = "#ffdd33", -- Yellow for specific text in strings if needed
+}
+
+-- Helper function to set highlights
+local function highlight(group, fg, bg, attr)
+  local cmd = "highlight " .. group .. " guifg=" .. (fg or "NONE") ..
+              " guibg=" .. (bg or "NONE") ..
+              " gui=" .. (attr or "NONE")
+  vim.cmd(cmd)
+end
+
+-- Apply highlights
+highlight("Normal", colors.fg, colors.bg)
+highlight("Comment", colors.gray, nil, "italic")          -- Comments in gray
+highlight("Keyword", colors.blue)                         -- Keywords in blue
+highlight("Type", colors.light_blue)                      -- Data types in light blue
+highlight("Function", colors.orange)                      -- Function names in orange
+highlight("Identifier", colors.white)                     -- Variables in white
+highlight("String", colors.green)                         -- Strings in green
+highlight("Special", colors.light_blue)                   -- For special keywords if needed
+highlight("Constant", colors.yellow)                      -- Constants in yellow
+
+-- Line and other interface elements for balance
+highlight("LineNr", colors.gray, colors.bg)
+highlight("CursorLineNr", colors.white, colors.bg)
+highlight("StatusLine", colors.fg, colors.bg)
+highlight("Pmenu", colors.fg, colors.bg_plus2)
+highlight("PmenuSel", colors.fg, colors.blue)
+highlight("Visual", nil, colors.gray)
+highlight("Search", colors.bg, colors.blue)
+highlight("IncSearch", colors.bg, colors.orange)
+highlight("MatchParen", colors.fg, colors.bg)
+
+-- Diagnostic and error colors
+highlight("DiagnosticError", colors.red_minus1)
+highlight("DiagnosticWarn", colors.yellow)
+highlight("DiagnosticInfo", colors.blue)
+highlight("DiagnosticHint", colors.gray)
+
