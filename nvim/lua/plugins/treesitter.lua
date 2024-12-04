@@ -23,6 +23,7 @@ return {
 					"vimdoc",
 					"vim",
 					"bash",
+					"odin",
 				},
 				auto_install = false,
 				sync_install = false,

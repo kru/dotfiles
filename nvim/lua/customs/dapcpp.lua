@@ -1,29 +1,5 @@
 local dap = require("dap")
 
-dap.adapters["pwa-node"] = {
-  type = "server",
-  host = "127.0.0.1",
-  port = "${port}",
-  executable = {
-    command = "node",
-    args = {"/opt/js-debug/src/dapDebugServer.js", "${port}"}
-  }
-}
-
-for _, language in ipairs { "typescript", "javascript"} do
-  dap.configurations[language] = {
-    {
-      type = "pwa-node",
-      request = "launch",
-      name = "Launch file",
-      program = "${file}",
-      cwd = "${workspaceFolder}",
-      runtimeExecutable = "node",
-    },
-  }
-end
-
-
 dap.adapters.delve = {
   type = "server",
   port = "${port}",
@@ -60,8 +36,8 @@ dap.configurations.go = {
 dap.adapters.cppdbg = {
   id = "cppdbg",
   type = "executable",
-  command = "/home/kris/.local/share/nvim/mason/bin/OpenDebugAD7",
-  -- command = "gdb",
+  -- command = "/home/kris/.local/share/nvim/mason/bin/OpenDebugAD7",
+  command = "gdb",
   -- args = {"-i", "dap"},
 }
 

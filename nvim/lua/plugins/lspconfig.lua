@@ -6,13 +6,11 @@ return {
 			ensure_installed = {
 				"gopls",
 				"gofumpt",
-				"typescript-language-server",
-				"eslint_d",
-				"js-debug-adapter",
 				"clangd",
 				"rust-analyzer",
 				"zls",
 				"stylua",
+				"ols",
 			},
 		},
 		config = function(_, opts)

@@ -67,9 +67,7 @@ local servers = {
 	},
 	-- pyright = {},
 	-- rust_analyzer = {},
-	ts_ls = {
-		filetypes = { "typescript", "javascript" },
-	},
+	-- ts_ls = {},
 	zls = {
 		filetypes = { "zig", "zir" },
 	},

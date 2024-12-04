@@ -1,8 +1,7 @@
-
 [window]
 decorations="Transparent"
 opacity=0.9
-startup_mode="Maximized"
+startup_mode="Fullscreen"
 option_as_alt="Both"
 
 # [shell]
