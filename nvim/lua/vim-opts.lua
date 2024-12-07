@@ -51,7 +51,7 @@ vim.keymap.set("n", "<leader>rn", "<cmd> set rnu! <CR>", {})
 -- move to last buffer
 vim.keymap.set("n", "<leader>b", "<cmd>:b#<CR>", { desc = "Move to the last buffer" })
 -- new buffer
--- vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", {})
+-- vim.keymap.set("n", "<leader>b", "<cmd> new <CR>", {})
 
 
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
@@ -116,75 +116,8 @@ vim.keymap.set("n", "<F2>", "<cmd> DapContinue <CR>", { desc = "Step continue" }
 
 -- folke/trouble.nvim mapping
 vim.keymap.set("n", "<leader>e", function()
-  require("trouble").toggle("workspace_diagnostics")
+  require("trouble").toggle("diagnostics")
 end)
 
 -- Define background and color palette based on your provided colors
 vim.opt.background = "dark"
-vim.cmd("highlight clear")
-
-if vim.fn.exists("syntax_on") then
-  vim.cmd("syntax reset")
-end
-
-vim.g.colors_name = "refined_soft_elegance"
-
-local colors = {
-  fg         = "#e4e4e4", -- Soft Foreground for main text
-  white      = "#ffffff", -- Pure White for variables
-  black      = "#000000", -- Pure Black (not commonly used)
-  bg         = "#181818", -- Background
-  gray       = "#95a99f", -- Gray for comments
-  blue       = "#96a6c8", -- Blue for keywords
-  light_blue = "#b0c9ff", -- Light blue for data types
-  orange     = "#cc8c3c", -- Orange for function names
-  green      = "#73d936", -- Green for strings
-  yellow     = "#ffdd33", -- Yellow for specific text in strings if needed
-  -- from gruber-dark
-  red_minus1 = "#c73c3f", -- Muted Red
-  brown      = "#cc8c3c", -- Muted Brown
-  quartz     = "#95a99f", -- Soft Neutral Grey
-  niagara2   = "#303540", -- Dark Blue-Grey
-  niagara1   = "#565f73", -- Muted Blue-Grey
-  niagara    = "#96a6c8", -- Soft Blue
-  wisteria   = "#9e95c7", -- Muted Purple
-  gold       = "#d4af37", -- Muted Gold for Data Types
-  teal       = "#5e9a8b", -- Muted Teal for Keywords
-}
-
--- Helper function to set highlights
-local function highlight(group, fg, bg, attr)
-  local cmd = "highlight " .. group .. " guifg=" .. (fg or "NONE") ..
-              " guibg=" .. (bg or "NONE") ..
-              " gui=" .. (attr or "NONE")
-  vim.cmd(cmd)
-end
-
--- Apply highlights
-highlight("Normal", colors.fg, colors.bg)
-highlight("Comment", colors.teal, nil, "italic")          -- Comments in gray
-highlight("Keyword", colors.blue)                         -- Keywords in blue
-highlight("Type", colors.light_blue)                      -- Data types in light blue
-highlight("Function", colors.orange)                      -- Function names in orange
-highlight("Identifier", colors.white)                     -- Variables in white
-highlight("String", colors.green)                         -- Strings in green
-highlight("Special", colors.light_blue)                   -- For special keywords if needed
-highlight("Constant", colors.yellow)                      -- Constants in yellow
-
--- Line and other interface elements for balance
-highlight("LineNr", colors.gray, colors.bg)
-highlight("CursorLineNr", colors.white, colors.bg)
-highlight("StatusLine", colors.fg, colors.bg)
-highlight("Pmenu", colors.fg, colors.bg_plus2)
-highlight("PmenuSel", colors.fg, colors.blue)
-highlight("Visual", nil, colors.gray)
-highlight("Search", colors.bg, colors.blue)
-highlight("IncSearch", colors.bg, colors.orange)
-highlight("MatchParen", colors.fg, colors.bg)
-
--- Diagnostic and error colors
-highlight("DiagnosticError", colors.red_minus1)
-highlight("DiagnosticWarn", colors.yellow)
-highlight("DiagnosticInfo", colors.blue)
-highlight("DiagnosticHint", colors.gray)
-

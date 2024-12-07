@@ -49,6 +49,8 @@ return {
 			vim.keymap.set('n', '<leader>fs', builtin.grep_string, {})
 			vim.keymap.set('n', '<leader>ls', builtin.oldfiles,
 				{ desc = '[?] Find recently opened files' })
+			vim.api.nvim_set_keymap("n", "<leader>lf", ":lua require('telescope.builtin').lsp_document_symbols({ symbols='function' })<CR>",
+				{ noremap = true })
 			vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 			require('telescope').setup(opts)
 		end

@@ -9,7 +9,10 @@ return {
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-        ensure_installed = { "zig", "c", "lua", "go", "javascript", "typescript", "bash", "rust", "cpp", "html", "vimdoc", "vim", "bash" },
+        ensure_installed = { "c", "lua", "go", "odin",
+          "bash", "rust", "cpp",
+          "javascript", "typescript",
+          "html", "vimdoc", "vim", "zig", "bash" },
         auto_install = false,
         sync_install = false,
         highlight = { enable = true },
