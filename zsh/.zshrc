@@ -124,6 +124,8 @@ export LC_ALL="en_US.UTF-8"
 export PATH="$PATH:$HOME/cosmocc/bin"
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/usr/local/go/bin
+export PATH="$PATH:$HOME/ispc-v1.25.1-macOS.x86_64/bin"
+export PATH="$PATH:$HOME/odin-macos-amd64-dev-2024-10"
 #export PATH="/opt/nvim-linux64/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
