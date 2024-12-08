@@ -67,10 +67,10 @@ local servers = {
 	},
 	-- pyright = {},
 	-- rust_analyzer = {},
-	-- ts_ls = {},
 	zls = {
 		filetypes = { "zig", "zir" },
 	},
+	ols = { filetypes = { "odin" } },
 	-- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
 	lua_ls = {
