@@ -24,7 +24,426 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local lazy_load = function(plugin)
+  vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
+    group = vim.api.nvim_create_augroup("BeLazyOnFileOpen" .. plugin, {}),
+    callback = function()
+      local file = vim.fn.expand "%"
+      local condition = file ~= "NvimTree_1" and file ~= "[lazy]" and file ~= ""
+
+      if condition then
+        vim.api.nvim_del_augroup_by_name("BeLazyOnFileOpen" .. plugin)
+
+        -- dont defer for treesitter as it will show slow highlighting
+        -- This deferring only happens only when we do "nvim filename"
+        if plugin ~= "nvim-treesitter" then
+          vim.schedule(function()
+            require("lazy").load { plugins = plugin }
+
+            if plugin == "nvim-lspconfig" then
+              vim.cmd "silent! do FileType"
+            end
+          end)
+        else
+          require("lazy").load { plugins = plugin }
+        end
+      end
+    end,
+  })
+end
+
 require("vim-opts")
-require("lazy").setup("plugins")
+-- plugin start
+require("lazy").setup({
+  {
+    "kru/judo.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("judo").setup({
+        contrast = "soft",
+      })
+      vim.cmd('colorscheme judo')
+    end
+  },
+  {
+    -- Git related plugins
+    "tpope/vim-fugitive",
+    "tpope/vim-rhubarb",
+
+    -- Detect tabstop and shiftwidth automatically
+    "tpope/vim-sleuth",
+  },
+  -- Useful plugin to show you pending keybinds.
+  {
+    "folke/which-key.nvim",
+    lazy = false,
+    opts = {},
+  },
+  {
+    "wakatime/vim-wakatime",
+    lazy = false,
+    priority = 1000,
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      signs = false,
+    },
+  },
+  { -- Autoformat
+    "stevearc/conform.nvim",
+    opts = {
+      notify_on_error = false,
+      -- format_on_save = {
+      -- 	timeout_ms = 500,
+      -- 	lsp_fallback = true,
+      -- },
+      formatters_by_ft = {
+        lua = { "stylua" },
+        -- Conform can also run multiple formatters sequentially
+        -- python = { "isort", "black" },
+        --
+        -- You can use a sub-list to tell conform to run *until* a formatter
+        -- is found.
+        -- javascript = { { "prettierd", "prettier" } },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+      },
+      default_format_opts = {
+        lsp_format = "fallback",
+      }
+    },
+    config = function(_, opts)
+      require("conform").setup(opts)
+    end,
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require("lualine").setup({
+        options = {
+          theme = "onedark",
+          section_separators = "",
+          component_separators = { left = "", right = "|" }
+        }
+      })
+    end
+  },
+  {
+    -- Git related plugins
+    "tpope/vim-fugitive",
+    "tpope/vim-rhubarb",
+
+    -- Detect tabstop and shiftwidth automatically
+    "tpope/vim-sleuth",
+  },
+  -- Useful plugin to show you pending keybinds.
+  {
+    "folke/which-key.nvim",
+    lazy = false,
+    opts = {},
+  },
+  {
+    "wakatime/vim-wakatime",
+    lazy = false,
+    priority = 1000,
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      signs = false,
+    },
+  },
+  { -- Autoformat
+    "stevearc/conform.nvim",
+    opts = {
+      notify_on_error = false,
+      -- format_on_save = {
+      -- 	timeout_ms = 500,
+      -- 	lsp_fallback = true,
+      -- },
+      formatters_by_ft = {
+        lua = { "stylua" },
+        -- Conform can also run multiple formatters sequentially
+        -- python = { "isort", "black" },
+        --
+        -- You can use a sub-list to tell conform to run *until* a formatter
+        -- is found.
+        -- javascript = { { "prettierd", "prettier" } },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+      },
+      default_format_opts = {
+        lsp_format = "fallback",
+      }
+    },
+    config = function(_, opts)
+      require("conform").setup(opts)
+    end,
+  },
+  {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.8',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        -- NOTE: If you are having trouble with this installation,
+        --       refer to the README for telescope-fzf-native for more instructions.
+        build = 'make',
+        cond = function()
+          return vim.fn.executable 'make' == 1
+        end,
+      },
+    },
+    opts = {
+      defaults = {
+        mappings = {},
+        layout_strategy = "vertical",
+        layout_config = {
+          vertical = {
+            prompt_position = "top",
+            mirror = true,
+            width = function(_, max_columns)
+              local percentage = 0.8
+              local max = 120
+              return math.min(math.floor(percentage * max_columns), max)
+            end,
+            height = function(_, _, max_lines)
+              local percentage = 0.8
+              local min = 120
+              return math.max(math.floor(percentage * max_lines), min)
+            end
+          },
+        },
+        sorting_strategy = "ascending",
+        initial_mode = "insert",
+        file_ignore_patterns = { "node_modules" },
+        color_devicons = true,
+        set_env = { ["COLORTERM"] = "truecolor" },
+      },
+    },
+    config = function(_, opts)
+      local builtin = require("telescope.builtin")
+      local finders = require("telescope.finders")
+      local pickers = require("telescope.pickers")
+      local make_entry = require("telescope.make_entry")
+      local live_multigrep = function(opts)
+        opts = opts or {}
+        opts.cwd = opts.cwd or vim.uv.cwd()
+
+        local finder = finders.new_async_job {
+          command_generator = function(prompt)
+            if not prompt or prompt == "" then
+              return nil
+            end
+
+            local pieces = vim.split(prompt, "  ")
+            local args = { "rg" }
+            if pieces[1] then
+              table.insert(args, "-e")
+              table.insert(args, pieces[1])
+            end
+
+            if pieces[2] then
+              table.insert(args, "-g")
+              table.insert(args, pieces[2])
+            end
+
+            --@diagnostic disable-next-line: deprecated
+            return vim.tbl_flatten {
+              args,
+              { "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" },
+            }
+          end,
+          entry_maker = make_entry.gen_from_vimgrep(opts),
+          cwd = opts.cwd,
+        }
+
+        pickers.new(opts, {
+          debounce = 100,
+          prompt_title = "Live Multi Grep",
+          finder = finder,
+          previewer = require("telescope.config").values.grep_previewer(opts),
+          sorter = require("telescope.sorters").empty(),
+        }):find()
+      end
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+      vim.keymap.set('n', '<leader>fs',
+        ":lua require('telescope.builtin').live_grep({ additional_args = { '--fixed-strings' }})<CR>",
+        { noremap = true })
+      vim.keymap.set('n', '<leader>fw', live_multigrep, {})
+      vim.keymap.set('n', '<leader>ls', builtin.oldfiles,
+        { desc = '[?] Find recently opened files' })
+      vim.api.nvim_set_keymap("n", "<leader>lf",
+        ":lua require('telescope.builtin').lsp_document_symbols({ symbols='function' })<CR>",
+        { noremap = true })
+      vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      require('telescope').setup(opts)
+    end
+  },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "nvim-lua/plenary.nvim"
+    },
+    opts = {
+      extensions = {
+        file_browser = {
+          -- theme = "ivy",
+          -- disables netrw and use telescope-file-browser in its place
+          -- hijack_netrw = true,
+          mappings = {
+          },
+          initial_mode = "insert",
+        },
+      },
+    },
+    config = function(_, opts)
+      vim.api.nvim_set_keymap("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+        { noremap = true })
+      require("telescope").setup(opts)
+      require("telescope").load_extension "file_browser"
+    end
+  },
+  {
+    "williamboman/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+    opts = {
+      ensure_installed = {
+        "gopls",
+        "gofumpt",
+        "typescript-language-server",
+        "eslint_d",
+        "clangd",
+        "clang-format",
+        "rust-analyzer",
+        "zls",
+        "lua-language-server",
+        "ols"
+      },
+    },
+    config = function(_, opts)
+      require("mason").setup(opts)
+
+      -- custom nvchad cmd to install all mason binaries listed
+      vim.api.nvim_create_user_command("MasonInstallAll", function()
+        vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
+      end, {})
+
+      vim.g.mason_binaries_list = opts.ensure_installed
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    init = function()
+      lazy_load("nvim-treesitter")
+    end,
+    config = function()
+      vim.defer_fn(function()
+        local configs = require("nvim-treesitter.configs")
+
+        configs.setup({
+          ensure_installed = { "c", "lua", "go", "odin",
+            "bash", "rust", "cpp",
+            "javascript", "typescript",
+            "html", "vimdoc", "vim", "zig", "bash", "odin" },
+          auto_install = false,
+          sync_install = false,
+          highlight = { enable = true },
+          indent = { enable = true, disable = { "go" } },
+          ignore_install = {},
+          modules = {},
+          incremental_selection = {
+            enable = true,
+            keymaps = {
+              init_selection = '<c-space>',
+              node_incremental = '<c-space>',
+              scope_incremental = '<c-i>',
+              node_decremental = '<M-space>',
+            },
+          },
+          textobjects = {
+            select = {
+              enable = true,
+              lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+              keymaps = {
+                -- You can use the capture groups defined in textobjects.scm
+                ['aa'] = '@parameter.outer',
+                ['ia'] = '@parameter.inner',
+                ['af'] = '@function.outer',
+                ['if'] = '@function.inner',
+                ['ac'] = '@class.outer',
+                ['ic'] = '@class.inner',
+              },
+            },
+            move = {
+              enable = true,
+              set_jumps = true, -- whether to set jumps in the jumplist
+              goto_next_start = {
+                [']m'] = '@function.outer',
+                [']]'] = '@class.outer',
+              },
+              goto_next_end = {
+                [']M'] = '@function.outer',
+                [']['] = '@class.outer',
+              },
+              goto_previous_start = {
+                ['[m'] = '@function.outer',
+                ['[['] = '@class.outer',
+              },
+              goto_previous_end = {
+                ['[M'] = '@function.outer',
+                ['[]'] = '@class.outer',
+              },
+            },
+            swap = {
+              enable = true,
+              swap_next = {
+                ['<leader>a'] = '@parameter.inner',
+              },
+              swap_previous = {
+                ['<leader>A'] = '@parameter.inner',
+              },
+            },
+          },
+        })
+      end, 0)
+    end
+  }
+})
+-- plugin end
 require("lsp-opts")
--- require("cmp")
