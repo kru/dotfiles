@@ -151,19 +151,19 @@ hi def link     goOctalInt          Number
 hi def link     goBinaryInt         Number
 
 " === Operators ===
-syn match       goOperator          display "\%([-+*/%&|^\!]\|<<\|>>\|&^\|<-\|++\|--\|:=\|&&\|||\)" " Multi-char ops first
-syn match       goOperator          display "=" " Assignment needs careful ordering or context
-syn match       goOperator          display "\.\.\." " Variadic
-syn match       goComparison        display "[=!]=?\|[<>]=?" " == != < <= > >=
-syn match       goPointerOperator   display "[*&]" " Pointer ops often highlighted differently
-syn match       goParenOperator     display "[()\[\]{}]" " Delimiters
-syn match       goSeparator         display "[,.;:]"
-
-hi def link     goOperator          Operator
-hi def link     goComparison        Operator
-hi def link     goPointerOperator   Operator  " Or link to Type or Special if preferred
-hi def link     goParenOperator     Delimiter
-hi def link     goSeparator         Delimiter
+"syn match       goOperator          display "\%([-+*/%&|^\!]\|<<\|>>\|&^\|<-\|++\|--\|:=\|&&\|||\)" " Multi-char ops first
+"syn match       goOperator          display "=" " Assignment needs careful ordering or context
+"syn match       goOperator          display "\.\.\." " Variadic
+"syn match       goComparison        display "[=!]=?\|[<>]=?" " == != < <= > >=
+"syn match       goPointerOperator   display "[*&]" " Pointer ops often highlighted differently
+"syn match       goParenOperator     display "[()\[\]{}]" " Delimiters
+"syn match       goSeparator         display "[,.;:]"
+"
+"hi def link     goOperator          Operator
+"hi def link     goComparison        Operator
+"hi def link     goPointerOperator   Operator  " Or link to Type or Special if preferred
+"hi def link     goParenOperator     Delimiter
+"hi def link     goSeparator         Delimiter
 
 " === Function Calls and Composite Literals (Heuristic) ===
 syn match       goFunctionCall      /\w\+(/hs=s,he=e-1 contains=goBuiltins,goType
