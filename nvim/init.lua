@@ -24,33 +24,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_load = function(plugin)
-  vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
-    group = vim.api.nvim_create_augroup("BeLazyOnFileOpen" .. plugin, {}),
-    callback = function()
-      local file = vim.fn.expand "%"
-      local condition = file ~= "NvimTree_1" and file ~= "[lazy]" and file ~= ""
-
-      if condition then
-        vim.api.nvim_del_augroup_by_name("BeLazyOnFileOpen" .. plugin)
-
-        -- dont defer for treesitter as it will show slow highlighting
-        -- This deferring only happens only when we do "nvim filename"
-        if plugin ~= "nvim-treesitter" then
-          vim.schedule(function()
-            require("lazy").load { plugins = plugin }
-
-            if plugin == "nvim-lspconfig" then
-              vim.cmd "silent! do FileType"
-            end
-          end)
-        else
-          require("lazy").load { plugins = plugin }
-        end
-      end
-    end,
-  })
-end
+vim.opt.updatetime = 100   -- Faster updates
+vim.cmd("syntax sync minlines=50 maxlines=100")
 
 require("vim-opts")
 -- plugin start
@@ -366,84 +341,6 @@ require("lazy").setup({
       vim.g.mason_binaries_list = opts.ensure_installed
     end,
   },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    init = function()
-      lazy_load("nvim-treesitter")
-    end,
-    config = function()
-      vim.defer_fn(function()
-        local configs = require("nvim-treesitter.configs")
-
-        configs.setup({
-          ensure_installed = { "c", "lua", "go", "odin",
-            "bash", "rust", "cpp",
-            "javascript", "typescript",
-            "html", "vimdoc", "vim", "zig", "bash", "odin" },
-          auto_install = false,
-          sync_install = false,
-          highlight = { enable = true },
-          indent = { enable = true, disable = { "go" } },
-          ignore_install = {},
-          modules = {},
-          incremental_selection = {
-            enable = true,
-            keymaps = {
-              init_selection = '<c-space>',
-              node_incremental = '<c-space>',
-              scope_incremental = '<c-i>',
-              node_decremental = '<M-space>',
-            },
-          },
-          textobjects = {
-            select = {
-              enable = true,
-              lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-              keymaps = {
-                -- You can use the capture groups defined in textobjects.scm
-                ['aa'] = '@parameter.outer',
-                ['ia'] = '@parameter.inner',
-                ['af'] = '@function.outer',
-                ['if'] = '@function.inner',
-                ['ac'] = '@class.outer',
-                ['ic'] = '@class.inner',
-              },
-            },
-            move = {
-              enable = true,
-              set_jumps = true, -- whether to set jumps in the jumplist
-              goto_next_start = {
-                [']m'] = '@function.outer',
-                [']]'] = '@class.outer',
-              },
-              goto_next_end = {
-                [']M'] = '@function.outer',
-                [']['] = '@class.outer',
-              },
-              goto_previous_start = {
-                ['[m'] = '@function.outer',
-                ['[['] = '@class.outer',
-              },
-              goto_previous_end = {
-                ['[M'] = '@function.outer',
-                ['[]'] = '@class.outer',
-              },
-            },
-            swap = {
-              enable = true,
-              swap_next = {
-                ['<leader>a'] = '@parameter.inner',
-              },
-              swap_previous = {
-                ['<leader>A'] = '@parameter.inner',
-              },
-            },
-          },
-        })
-      end, 0)
-    end
-  }
 })
 -- plugin end
 require("lsp-opts")
