@@ -288,32 +288,6 @@ require("lazy").setup({
     end
   },
   {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "nvim-lua/plenary.nvim"
-    },
-    opts = {
-      extensions = {
-        file_browser = {
-          -- theme = "ivy",
-          -- disables netrw and use telescope-file-browser in its place
-          -- hijack_netrw = true,
-          mappings = {
-          },
-          initial_mode = "insert",
-        },
-      },
-    },
-    config = function(_, opts)
-      vim.api.nvim_set_keymap("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
-        { noremap = true })
-      require("telescope").setup(opts)
-      require("telescope").load_extension "file_browser"
-    end
-  },
-  {
     "williamboman/mason.nvim",
     cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
     opts = {
@@ -340,7 +314,7 @@ require("lazy").setup({
 
       vim.g.mason_binaries_list = opts.ensure_installed
     end,
-  },
+  }
 })
 -- plugin end
 require("lsp-opts")
