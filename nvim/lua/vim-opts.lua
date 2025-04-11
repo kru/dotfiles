@@ -116,7 +116,7 @@ end)
 
 -- sneak jump
 vim.keymap.set("n", "gw", "<Plug>Sneak_s", { noremap = true })
-vim.keymap.set("n", "gW", "<Plug>Sneak_S", { noremap = true })
+vim.keymap.set("n", "Gw", "<Plug>Sneak_S", { noremap = true })
 
 -- diagnostic
 vim.diagnostic.config({

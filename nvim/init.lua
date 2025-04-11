@@ -115,6 +115,14 @@ require("lazy").setup({
           theme = "onedark",
           section_separators = "",
           component_separators = { left = "", right = "|" }
+        },
+        sections = {
+          lualine_a = {
+            {
+              'filename',
+              path = 1
+            }
+          }
         }
       })
     end
