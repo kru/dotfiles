@@ -29,9 +29,9 @@ static const int topbar = 1;      /* 0 means bottom bar */
 
 static const char *fonts[] = {
     "DejaVu Sans Mono:size=14",
-    "Sogoe UI:style=Regular:pixelsize=16:antialias=true:autohint=true"};
+    "DejaVu Sans Mono:style=Regular:pixelsize=16:antialias=true:autohint=true"};
 static const char dmenufont[] = {
-    "Segoe UI:style=Regular:size=16:antialias=true:autohint=true",
+    "DejaVu Sans Mono:style=Regular:size=16:antialias=true:autohint=true",
 };
 
 static const char normbordercolor[] = "#3B4252";
@@ -55,7 +55,7 @@ static const char *const autostart[] = {
     "flameshot",            NULL,
     "dunst",                NULL,
     "picom",  "-b", NULL,
-    "sh", "-c", "feh --randomize --bg-fill " "~/Pictures/macOS-Big-Sur-The-Lake-4-dragged.jpg", NULL,
+    "sh", "-c", "feh --randomize --bg-fill " "~/Pictures/debian.jpg", NULL,
     "slstatus",             NULL,
     NULL /* terminate */
 };
