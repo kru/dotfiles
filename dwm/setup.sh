@@ -12,7 +12,7 @@ install_debian() {
     build-essential module-assistant \
     make gcc libimlib2-dev libxcb-res0-dev \
     libx11-xcv-dev libx11-dev libxft-dev libxinerama-dev xorg \
-    ripgrep fasd xclip feh
+    ripgrep fasd xclip feh thunar flameshot
 
     touch ~/.xinitrc && echo "exec dwm" >> ~/.xinitrc
 }
@@ -73,9 +73,9 @@ picom_animations() {
 install_nerd_font() {
     FONT_DIR="$HOME/.local/share/fonts"
     FONT_ZIP="$FONT_DIR/Meslo.zip"
-    FONT_ZIP_2="$FONT_DIR/CommitMono.zip"
+    FONT_ZIP_2="$FONT_DIR/CommitMono-krisV143.zip"
     FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip"
-    FONT_URL_2="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/CommitMono.zip"
+    FONT_URL_2="../CommitMono-krisV143.zip"
     FONT_INSTALLED=$(fc-list | grep -i "Meslo")
     FONT_2_INSTALLED=$(fc-list | grep -i "Commit")
 
@@ -104,12 +104,16 @@ install_nerd_font() {
             echo "Failed to download Meslo Nerd-fonts from $FONT_URL"
             return 1
         }
+        cp "$FONT_URL_2" "$FONT_DIR" || {
+            echo "Failed to cp Commit mono to $FONT_DIR"
+            return 1
+        }
     else
         echo "Meslo.zip already exists in $FONT_DIR, skipping download."
     fi
 
     # Unzip the font file if it hasn't been unzipped yet
-    if [ ! -d "$FONT_DIR/Meslo" && "$FONT_DIR/Commit"]; then
+    if [ ! -d "$FONT_DIR/Meslo" ]; then
         unzip "$FONT_ZIP" -d "$FONT_DIR" || {
             echo "Failed to unzip $FONT_ZIP"
             return 1
@@ -118,8 +122,18 @@ install_nerd_font() {
         echo "Meslo font files already unzipped in $FONT_DIR, skipping unzip."
     fi
 
+    # Unzip the font file if it hasn't been unzipped yet
+    if [ ! -d "$FONT_DIR/Commit" ]; then
+        unzip "$FONT_ZIP_2" -d "$FONT_DIR" || {
+            echo "Failed to unzip $FONT_ZIP_2"
+            return 1
+        }
+    else
+        echo "Meslo font files already unzipped in $FONT_DIR, skipping unzip."
+    fi
+
     # Remove the zip file
-    rm "$FONT_ZIP" || {
+    rm ("$FONT_ZIP" && "$FONT_ZIP_2") || {
         echo "Failed to remove $FONT_ZIP"
         return 1
     }
@@ -130,7 +144,7 @@ install_nerd_font() {
         return 1
     }
 
-    echo "Meslo Nerd-fonts installed successfully"
+    echo "Meslo and commit mono Nerd-fonts installed successfully"
 }
 
 # Call the function
