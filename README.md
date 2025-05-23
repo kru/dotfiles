@@ -20,9 +20,10 @@ git clone git@github.com:kru/dotfiles.git
 stow -t ~/.config/nvim nvim
 ```
 
-#### Alacritty
+#### Tmux
 ```
-stow -t ~/.config/alacritty alacritty
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+tmux source ~/.config/tmux/tmux.conf
 ```
 
 *NOTE*: Please make sure the path is exist (either create the new path or specify other path)

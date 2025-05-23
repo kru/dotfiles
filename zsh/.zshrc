@@ -97,8 +97,6 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export NVM_DIR=~/.nvm
- [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 eval "$(fasd --init auto)"
 
@@ -107,14 +105,6 @@ alias gitlocaluser='git config --local credential.helper ""'
 alias z='fasd_cd -d'
 alias vim='/usr/bin/nvim'
 alias vi='/usr/bin/vim'
-# alias ls='ls -l'
-#alias python='python3'
-alias datagrip='/opt/DataGrip-2024.1.1/bin/datagrip.sh'
-alias bitwarden='/opt/bitwarden.AppImage'
-alias ressh='eval "$(ssh-agent -s)" && ssh-add $HOME/.ssh/id_ed25519_tekuton'
-alias xilinx='/opt/Xilinx/start_xilinx_ise'
-alias firefox='/opt/brave.com/brave/brave'
-
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/go/bin
@@ -122,13 +112,9 @@ export PATH=$PATH:$HOME/go/bin
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 export PATH=/usr/local/bin:$PATH
 export LC_ALL="en_US.UTF-8"
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/usr/local/go/bin
-#export PATH="/opt/nvim-linux64/bin:$PATH"
-export PATH=$PATH:/opt/DataGrip-2024.1.1/bin
+export PATH="/opt/nvim-linux64/bin:$PATH"
