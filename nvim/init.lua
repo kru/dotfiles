@@ -24,7 +24,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.opt.updatetime = 100   -- Faster updates
+vim.opt.updatetime = 100 -- Faster updates
 vim.cmd("syntax sync minlines=50 maxlines=100")
 
 require("vim-opts")
@@ -314,7 +314,9 @@ require("lazy").setup({
 
       vim.g.mason_binaries_list = opts.ensure_installed
     end,
-  }
+  },
+  { "nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate" }
 })
 -- plugin end
 require("lsp-opts")
+-- require("eztracker")
