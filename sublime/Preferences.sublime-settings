@@ -1,0 +1,11 @@
+{
+	"ignored_packages":
+	[
+	],
+	"color_scheme": "ayu-dark.sublime-color-scheme",
+	"theme": "Default Dark.sublime-theme",
+	"font_face": "CommitMono Nerd Font Mono",
+	"font_size": 12,
+	"folder_exclude_patterns": ["dist", "node_modules"],
+	"index_files": true,
+}

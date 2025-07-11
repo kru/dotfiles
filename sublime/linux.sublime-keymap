@@ -1,0 +1,13 @@
+[
+  { "keys": ["g", "d"], "command": "lsp_symbol_definition", "context": [{ "key": "selector", "operator": "equal", "operand": "source.ts, source.tsx, source.js, source.jsx, source.go" }] },
+  { "keys": ["K"], "command": "lsp_hover", "context": [{ "key": "selector", "operator": "equal", "operand": "source.ts, source.tsx, source.js, source.jsx, source.go" }] },
+  { "keys": ["ctrl+shift+a"], "command": "lsp_code_actions", "context": [{ "key": "selector", "operator": "equal", "operand": "source.ts, source.tsx, source.js, source.jsx, source.go" }] },
+  { "keys": ["g", "r"], "command": "lsp_symbol_references", "context": [{ "key": "selector", "operator": "equal", "operand": "source.ts, source.tsx, source.js, source.jsx, source.go" }] },
+  { "keys": ["g", "i"], "command": "lsp_symbol_implementation", "context": [{ "key": "selector", "operator": "equal", "operand": "source.ts, source.tsx, source.js, source.jsx, source.go" }] },
+  { "keys": ["ctrl+shift+d"], "command": "lsp_symbol_type_definition", "context": [{ "key": "selector", "operator": "equal", "operand": "source.ts, source.tsx, source.js, source.jsx, source.go" }] },
+  { "keys": ["ctrl+shift+s"], "command": "lsp_document_symbols", "context": [{ "key": "selector", "operator": "equal", "operand": "source.ts, source.tsx, source.js, source.jsx, source.go" }] },
+  { "keys": ["ctrl+shift+w"], "command": "lsp_workspace_symbols", "context": [{ "key": "selector", "operator": "equal", "operand": "source.ts, source.tsx, source.js, source.jsx, source.go" }] },
+  { "keys": ["ctrl+shift+h"], "command": "lsp_signature_help", "context": [{ "key": "selector", "operator": "equal", "operand": "source.ts, source.tsx, source.js, source.jsx, source.go" }] },
+  { "keys": ["g", "D"], "command": "lsp_symbol_declaration", "context": [{ "key": "selector", "operator": "equal", "operand": "source.ts, source.tsx, source.js, source.jsx, source.go" }] },
+  { "keys": ["M"], "command": "lsp_format_document", "context": [{ "key": "selector", "operator": "equal", "operand": "source.ts, source.tsx, source.js, source.jsx, source.go" }] }
+]
