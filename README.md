@@ -2,8 +2,8 @@
 
 Pre:
 - Install GNU stow
-- Install JetBrains Mono Nerd Font (optional)
-- Install zsh and oh-my-zsh
+- Install Nerd Font (optional)
+- Install zsh
 - Install tmux
 - Install NeoVim
 
@@ -15,14 +15,16 @@ git clone git@github.com:kru/dotfiles.git
 
 2. Create the symlink using stow to each tools accordingly, for examples:
 
+#### ZSH
+```
+mkdir ~/.zsh
+touch ~/.zshenv
+echo "EXPORT ZSH=~/.zsh" > ~/.zshenv
+```
+
 #### NeoVim
 ```
 stow -t ~/.config/nvim nvim
-```
-
-#### Alacritty
-```
-stow -t ~/.config/alacritty alacritty
 ```
 
 *NOTE*: Please make sure the path is exist (either create the new path or specify other path)
