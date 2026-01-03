@@ -56,11 +56,6 @@ require("lazy").setup({
     opts = {},
   },
   {
-    "wakatime/vim-wakatime",
-    lazy = false,
-    priority = 1000,
-  },
-  {
     "christoomey/vim-tmux-navigator",
     lazy = false,
   },
@@ -133,11 +128,6 @@ require("lazy").setup({
     "folke/which-key.nvim",
     lazy = false,
     opts = {},
-  },
-  {
-    "wakatime/vim-wakatime",
-    lazy = false,
-    priority = 1000,
   },
   {
     "christoomey/vim-tmux-navigator",
@@ -319,4 +309,4 @@ require("lazy").setup({
 })
 -- plugin end
 require("lsp-opts")
--- require("eztracker")
+require("eztracker").setup({})
