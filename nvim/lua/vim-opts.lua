@@ -116,7 +116,18 @@ end)
 
 -- diagnostic
 vim.diagnostic.config({
-  virtual_text = true
+  virtual_text = {
+    prefix = "●",
+    spacing = 2,
+  },
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  float = {
+    border = "rounded",
+    source = "always",
+  },
 })
 
 -- Define background and color palette based on your provided colors

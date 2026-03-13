@@ -41,40 +41,6 @@ require("lazy").setup({
       vim.cmd('colorscheme judo')
     end
   },
-  {
-    -- Git related plugins
-    "tpope/vim-fugitive",
-    "tpope/vim-rhubarb",
-
-    -- Detect tabstop and shiftwidth automatically
-    "tpope/vim-sleuth",
-  },
-  -- Useful plugin to show you pending keybinds.
-  {
-    "folke/which-key.nvim",
-    lazy = false,
-    opts = {},
-  },
-  {
-    "christoomey/vim-tmux-navigator",
-    lazy = false,
-  },
-  {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
-  },
-  {
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-      signs = false,
-    },
-  },
   { -- Autoformat
     "stevearc/conform.nvim",
     opts = {
@@ -85,12 +51,13 @@ require("lazy").setup({
       -- },
       formatters_by_ft = {
         lua = { "stylua" },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        -- Biome for JS/TS/JSON formatting
+        javascript = { "biome" },
+        javascriptreact = { "biome" },
+        typescript = { "biome" },
+        typescriptreact = { "biome" },
+        json = { "biome" },
+        jsonc = { "biome" },
         c = { "clang-format" },
         cpp = { "clang-format" },
       },
@@ -104,7 +71,8 @@ require("lazy").setup({
   },
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = { 'echasnovski/mini.icons' },
+    lazy = false,
     config = function()
       require("lualine").setup({
         options = {
@@ -133,14 +101,21 @@ require("lazy").setup({
     "christoomey/vim-tmux-navigator",
     lazy = false,
   },
+  -- mini.icons - lightweight icon provider (replaces nvim-web-devicons)
+  {
+    "echasnovski/mini.icons",
+    lazy = false,
+    opts = {},
+    init = function()
+      require("mini.icons").mock_nvim_web_devicons()
+    end,
+    config = function(_, opts)
+      require("mini.icons").setup(opts)
+    end,
+  },
   {
     "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
+    opts = {},
   },
   {
     "folke/todo-comments.nvim",
@@ -148,33 +123,6 @@ require("lazy").setup({
     opts = {
       signs = false,
     },
-  },
-  { -- Autoformat
-    "stevearc/conform.nvim",
-    opts = {
-      notify_on_error = false,
-      -- format_on_save = {
-      -- 	timeout_ms = 500,
-      -- 	lsp_fallback = true,
-      -- },
-      formatters_by_ft = {
-        lua = { "stylua" },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
-        c = { "clang-format" },
-        cpp = { "clang-format" },
-      },
-      default_format_opts = {
-        lsp_format = "fallback",
-      }
-    },
-    config = function(_, opts)
-      require("conform").setup(opts)
-    end,
   },
   {
     'nvim-telescope/telescope.nvim',
@@ -223,9 +171,20 @@ require("lazy").setup({
       local finders = require("telescope.finders")
       local pickers = require("telescope.pickers")
       local make_entry = require("telescope.make_entry")
+
+      -- Check if ripgrep is installed
+      local has_rg = vim.fn.executable("rg") == 1
+
       local live_multigrep = function(opts)
         opts = opts or {}
         opts.cwd = opts.cwd or vim.uv.cwd()
+
+        -- Fallback to builtin live_grep if ripgrep is not available
+        if not has_rg then
+          vim.notify("ripgrep (rg) not found. Falling back to builtin live_grep. Install ripgrep for better performance.", vim.log.levels.WARN)
+          builtin.live_grep(opts)
+          return
+        end
 
         local finder = finders.new_async_job {
           command_generator = function(prompt)
@@ -263,11 +222,20 @@ require("lazy").setup({
           sorter = require("telescope.sorters").empty(),
         }):find()
       end
+
+      -- Helper to check rg for live_grep
+      local live_grep_with_fallback = function(additional_args)
+        if not has_rg then
+          vim.notify("ripgrep (rg) not found. Install ripgrep for better search performance.", vim.log.levels.WARN)
+        end
+        builtin.live_grep(additional_args)
+      end
+
       vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-      vim.keymap.set('n', '<leader>fs',
-        ":lua require('telescope.builtin').live_grep({ additional_args = { '--fixed-strings' }})<CR>",
-        { noremap = true })
-      vim.keymap.set('n', '<leader>fw', live_multigrep, {})
+      vim.keymap.set('n', '<leader>fs', function()
+        live_grep_with_fallback({ additional_args = { '--fixed-strings' } })
+      end, { noremap = true, desc = '[F]ind [S]tring (fixed)' })
+      vim.keymap.set('n', '<leader>fw', live_multigrep, { desc = '[F]ind [W]ord (multi-grep)' })
       vim.keymap.set('n', '<leader>ls', builtin.oldfiles,
         { desc = '[?] Find recently opened files' })
       vim.api.nvim_set_keymap("n", "<leader>lf",
@@ -277,15 +245,16 @@ require("lazy").setup({
       require('telescope').setup(opts)
     end
   },
+  -- Mason: LSP/DAP/Formatter/Linter package manager
   {
     "williamboman/mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+    lazy = false, -- Load immediately (needed for LSP setup)
     opts = {
       ensure_installed = {
         "gopls",
         "gofumpt",
-        "typescript-language-server",
-        "eslint_d",
+        -- Formatter/Linter: Biome (replaces eslint_d + prettier)
+        "biome",
         "clangd",
         "clang-format",
         "rust-analyzer",
@@ -305,8 +274,63 @@ require("lazy").setup({
       vim.g.mason_binaries_list = opts.ensure_installed
     end,
   },
-  { "nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate" }
+  -- nvim-lspconfig: LSP configuration (required by typescript-tools and useful for other LSPs)
+  {
+    "neovim/nvim-lspconfig",
+    lazy = false, -- Load immediately for LSP support
+    dependencies = { "williamboman/mason.nvim" },
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    branch = 'master',
+    lazy = false,
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        -- List of parsers to install (or "all" for everything)
+        -- Explicitly excluding javascript
+        ensure_installed = {
+          "c",
+          "cpp",
+          "go",
+          "lua",
+          "luadoc",
+          "markdown",
+          "markdown_inline",
+          "odin",
+          "python",
+          "query",
+          "regex",
+          "rust",
+          "tsx",
+          "typescript",
+          "vim",
+          "vimdoc",
+          "zig",
+        },
+        -- Ignore JavaScript parser
+        ignore_install = { "javascript" },
+        highlight = {
+          enable = true,
+          -- Disable highlighting for JavaScript files
+          disable = { "javascript", "javascriptreact" },
+        },
+        indent = { enable = true },
+      })
+    end,
+  },
+  -- typescript-tools.nvim - TypeScript LSP
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { 
+      "nvim-lua/plenary.nvim", 
+      "neovim/nvim-lspconfig",
+    },
+    ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+    config = function()
+      require("typescript-tools").setup({})
+    end,
+  },
 })
 -- plugin end
 require("lsp-opts")
-require("eztracker").setup({})
