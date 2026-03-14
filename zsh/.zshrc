@@ -14,7 +14,8 @@ MNML_INFOLN=()
 
 #PROMPT="$(_mnml_wrap MNML_PROMPT)
 #╰─%B\$'\\u2192' ➤ %b"
-PROMPT='$(_mnml_wrap MNML_PROMPT)${prompt_newline}%{%(?.%F{green}.%F{red})%}➤ %{%f%}%b'
+PROMPT='$(_mnml_wrap MNML_PROMPT)
+${prompt_newline}%{%(?.%F{green}.%F{red})%}➤ %b'
 # Enable prefix-based history search with up/down arrows (exact Oh My Zsh style)
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
