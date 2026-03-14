@@ -24,12 +24,28 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.opt.updatetime = 100 -- Faster updates
-vim.cmd("syntax sync minlines=50 maxlines=100")
+vim.opt.updatetime = 250 -- Faster updates (ms)
 
 require("vim-opts")
 -- plugin start
 require("lazy").setup({
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+  install = {
+    colorscheme = { "judo" },
+  },
   {
     "kru/judo.nvim",
     lazy = false,
@@ -94,17 +110,17 @@ require("lazy").setup({
   -- Useful plugin to show you pending keybinds.
   {
     "folke/which-key.nvim",
-    lazy = false,
+    event = "VeryLazy",
     opts = {},
   },
   {
     "christoomey/vim-tmux-navigator",
-    lazy = false,
+    event = "VeryLazy",
   },
   -- mini.icons - lightweight icon provider (replaces nvim-web-devicons)
   {
     "echasnovski/mini.icons",
-    lazy = false,
+    lazy = true,
     opts = {},
     init = function()
       require("mini.icons").mock_nvim_web_devicons()
@@ -115,6 +131,7 @@ require("lazy").setup({
   },
   {
     "folke/trouble.nvim",
+    cmd = { "Trouble", "TroubleToggle" },
     opts = {},
   },
   {
@@ -126,7 +143,8 @@ require("lazy").setup({
   },
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
+    -- Use master for Neovim 0.10+ compatibility (fixes position_encoding issues)
+    branch = 'master',
     dependencies = {
       'nvim-lua/plenary.nvim',
       {
@@ -238,9 +256,10 @@ require("lazy").setup({
       vim.keymap.set('n', '<leader>fw', live_multigrep, { desc = '[F]ind [W]ord (multi-grep)' })
       vim.keymap.set('n', '<leader>ls', builtin.oldfiles,
         { desc = '[?] Find recently opened files' })
-      vim.api.nvim_set_keymap("n", "<leader>lf",
-        ":lua require('telescope.builtin').lsp_document_symbols({ symbols='function' })<CR>",
-        { noremap = true })
+      vim.keymap.set('n', '<leader>lf', function()
+        -- Query ALL symbols first (for debugging)
+        builtin.lsp_document_symbols({})
+      end, { desc = '[L]ist [F]unctions' })
       vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       require('telescope').setup(opts)
     end

@@ -57,7 +57,7 @@ local on_attach = function(_, bufnr)
 	-- In this case, we create a function that lets us more easily define mappings specific
 	-- for LSP related items. It sets the mode, buffer and description for us each time.
 	-- Enable completion triggered by <c-x><c-o>
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 	-- local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	local nmap = function(keys, func, desc)
 		if desc then
@@ -101,8 +101,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		if client:supports_method('textDocument/completion') then
 			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = false })
 		end
-		on_attach(client, vim.api.nvim_get_current_buf())
+		on_attach(client, ev.buf)
 	end,
 })
-
-vim.lsp.buf.hover()

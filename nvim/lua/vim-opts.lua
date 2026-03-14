@@ -49,11 +49,11 @@ vim.keymap.set("n", "<leader>n", "<cmd> set nu! <CR>", {})
 vim.keymap.set("n", "<leader>rn", "<cmd> set rnu! <CR>", {})
 
 -- move down and center
-vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
 -- move up and center
-vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
 -- keep yank on reg
-vim.api.nvim_set_keymap("x", "<leader>p", "\"_dP", { noremap = true })
+vim.keymap.set("x", "<leader>p", "\"_dP", { noremap = true })
 
 -- move to last buffer
 vim.keymap.set("n", "<leader>b", "<cmd>:b#<CR>", { desc = "Move to the last buffer" })
@@ -99,8 +99,7 @@ vim.o.smartcase = true
 -- Keep signcolumn on by default
 vim.wo.signcolumn = "yes"
 
--- Decrease update time
-vim.o.updatetime = 250
+-- Key timeout
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
