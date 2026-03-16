@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 950" width="800" height="950">
+  <defs>
+    <style>
+      .bg { fill: #1e1e1e; }
+      .key { fill: #2d2d2d; stroke: #3d3d3d; stroke-width: 1; }
+      .key-text { fill: #d4d4d4; font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; font-size: 13px; font-weight: 500; }
+      .desc { fill: #9e9e9e; font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; font-size: 12px; }
+      .category-title { font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; font-size: 14px; font-weight: 600; }
+      .leader-key { fill: #ffd700; }
+      .leader-text { fill: #1e1e1e; font-weight: 600; }
+      .ctrl-key { fill: #79c0ff; }
+      .ctrl-text { fill: #1e1e1e; font-weight: 600; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect class="bg" width="800" height="950" rx="8"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" fill="#d4d4d4" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="600">Neovim Keybindings</text>
+  
+  <!-- ===== GENERAL ===== -->
+  <text x="40" y="80" class="category-title" fill="#7ee787">● General</text>
+  
+  <!-- Ctrl+S -->
+  <rect class="key ctrl-key" x="40" y="95" width="50" height="28" rx="4"/>
+  <text x="65" y="114" text-anchor="middle" class="key-text ctrl-text">C-s</text>
+  <text x="100" y="114" class="desc">Save file</text>
+  
+  <!-- Ctrl+C -->
+  <rect class="key ctrl-key" x="40" y="133" width="50" height="28" rx="4"/>
+  <text x="65" y="152" text-anchor="middle" class="key-text ctrl-text">C-c</text>
+  <text x="100" y="152" class="desc">Copy entire file</text>
+  
+  <!-- Leader+b -->
+  <rect class="key leader-key" x="40" y="171" width="50" height="28" rx="4"/>
+  <text x="65" y="190" text-anchor="middle" class="key-text leader-text">SPC b</text>
+  <text x="100" y="190" class="desc">Go to last buffer</text>
+  
+  <!-- Leader+p -->
+  <rect class="key leader-key" x="40" y="209" width="50" height="28" rx="4"/>
+  <text x="65" y="228" text-anchor="middle" class="key-text leader-text">SPC p</text>
+  <text x="100" y="228" class="desc">Paste without yanking (visual)</text>
+  
+  <!-- ===== NAVIGATION ===== -->
+  <text x="40" y="270" class="category-title" fill="#79c0ff">● Navigation</text>
+  
+  <!-- Ctrl+HJKL -->
+  <rect class="key ctrl-key" x="40" y="285" width="100" height="28" rx="4"/>
+  <text x="90" y="304" text-anchor="middle" class="key-text ctrl-text">C-h/j/k/l</text>
+  <text x="150" y="304" class="desc">Navigate windows / Tmux panes</text>
+  
+  <!-- Ctrl+D -->
+  <rect class="key ctrl-key" x="40" y="323" width="50" height="28" rx="4"/>
+  <text x="65" y="342" text-anchor="middle" class="key-text ctrl-text">C-d</text>
+  <text x="100" y="342" class="desc">Half page down + center</text>
+  
+  <!-- Ctrl+U -->
+  <rect class="key ctrl-key" x="40" y="361" width="50" height="28" rx="4"/>
+  <text x="65" y="380" text-anchor="middle" class="key-text ctrl-text">C-u</text>
+  <text x="100" y="380" class="desc">Half page up + center</text>
+  
+  <!-- Ctrl+B/E (insert) -->
+  <rect class="key ctrl-key" x="40" y="399" width="70" height="28" rx="4"/>
+  <text x="75" y="418" text-anchor="middle" class="key-text ctrl-text">C-b/e</text>
+  <text x="120" y="418" class="desc">Beginning/end of line (insert mode)</text>
+  
+  <!-- Arrow HJKL (insert) -->
+  <rect class="key ctrl-key" x="40" y="437" width="100" height="28" rx="4"/>
+  <text x="90" y="456" text-anchor="middle" class="key-text ctrl-text">C-h/j/k/l</text>
+  <text x="150" y="456" class="desc">Arrow keys (insert mode)</text>
+  
+  <!-- J/K wrapped -->
+  <rect class="key" x="40" y="475" width="40" height="28" rx="4"/>
+  <text x="60" y="494" text-anchor="middle" class="key-text">j/k</text>
+  <text x="90" y="494" class="desc">Move through wrapped lines</text>
+  
+  <!-- ===== SEARCH (Telescope) ===== -->
+  <text x="40" y="536" class="category-title" fill="#d2a8ff">● Search (Telescope)</text>
+  
+  <!-- Leader+ff -->
+  <rect class="key leader-key" x="40" y="551" width="55" height="28" rx="4"/>
+  <text x="67" y="570" text-anchor="middle" class="key-text leader-text">SPC ff</text>
+  <text x="105" y="570" class="desc">Find files</text>
+  
+  <!-- Leader+fs -->
+  <rect class="key leader-key" x="40" y="589" width="55" height="28" rx="4"/>
+  <text x="67" y="608" text-anchor="middle" class="key-text leader-text">SPC fs</text>
+  <text x="105" y="608" class="desc">Find string (fixed strings)</text>
+  
+  <!-- Leader+fw -->
+  <rect class="key leader-key" x="40" y="627" width="55" height="28" rx="4"/>
+  <text x="67" y="646" text-anchor="middle" class="key-text leader-text">SPC fw</text>
+  <text x="105" y="646" class="desc">Find word (multi-grep)</text>
+  
+  <!-- Leader+ls -->
+  <rect class="key leader-key" x="40" y="665" width="55" height="28" rx="4"/>
+  <text x="67" y="684" text-anchor="middle" class="key-text leader-text">SPC ls</text>
+  <text x="105" y="684" class="desc">Recently opened files</text>
+  
+  <!-- Leader+lf -->
+  <rect class="key leader-key" x="40" y="703" width="55" height="28" rx="4"/>
+  <text x="67" y="722" text-anchor="middle" class="key-text leader-text">SPC lf</text>
+  <text x="105" y="722" class="desc">List functions (document symbols)</text>
+  
+  <!-- Leader+space -->
+  <rect class="key leader-key" x="40" y="741" width="85" height="28" rx="4"/>
+  <text x="82" y="760" text-anchor="middle" class="key-text leader-text">SPC SPC</text>
+  <text x="135" y="760" class="desc">Find existing buffers</text>
+  
+  <!-- ===== LSP ===== -->
+  <text x="400" y="536" class="category-title" fill="#ffa657">● LSP</text>
+  
+  <!-- gd -->
+  <rect class="key" x="400" y="551" width="35" height="28" rx="4"/>
+  <text x="417" y="570" text-anchor="middle" class="key-text">gd</text>
+  <text x="445" y="570" class="desc">Go to Definition</text>
+  
+  <!-- gr -->
+  <rect class="key" x="400" y="589" width="35" height="28" rx="4"/>
+  <text x="417" y="608" text-anchor="middle" class="key-text">gr</text>
+  <text x="445" y="608" class="desc">Go to References</text>
+  
+  <!-- gI -->
+  <rect class="key" x="400" y="627" width="35" height="28" rx="4"/>
+  <text x="417" y="646" text-anchor="middle" class="key-text">gI</text>
+  <text x="445" y="646" class="desc">Go to Implementation</text>
+  
+  <!-- gD -->
+  <rect class="key" x="400" y="665" width="35" height="28" rx="4"/>
+  <text x="417" y="684" text-anchor="middle" class="key-text">gD</text>
+  <text x="445" y="684" class="desc">Go to Declaration</text>
+  
+  <!-- K -->
+  <rect class="key" x="400" y="703" width="30" height="28" rx="4"/>
+  <text x="415" y="722" text-anchor="middle" class="key-text">K</text>
+  <text x="440" y="722" class="desc">Hover Documentation</text>
+  
+  <!-- Leader+D -->
+  <rect class="key leader-key" x="400" y="741" width="55" height="28" rx="4"/>
+  <text x="427" y="760" text-anchor="middle" class="key-text leader-text">SPC D</text>
+  <text x="465" y="760" class="desc">Type Definition</text>
+  
+  <!-- Leader+ds -->
+  <rect class="key leader-key" x="550" y="551" width="55" height="28" rx="4"/>
+  <text x="577" y="570" text-anchor="middle" class="key-text leader-text">SPC ds</text>
+  <text x="615" y="570" class="desc">Document Symbols</text>
+  
+  <!-- Leader+ws -->
+  <rect class="key leader-key" x="550" y="589" width="55" height="28" rx="4"/>
+  <text x="577" y="608" text-anchor="middle" class="key-text leader-text">SPC ws</text>
+  <text x="615" y="608" class="desc">Workspace Symbols</text>
+  
+  <!-- Leader+ca -->
+  <rect class="key leader-key" x="550" y="627" width="55" height="28" rx="4"/>
+  <text x="577" y="646" text-anchor="middle" class="key-text leader-text">SPC ca</text>
+  <text x="615" y="646" class="desc">Code Action</text>
+  
+  <!-- Leader+sh -->
+  <rect class="key leader-key" x="550" y="665" width="55" height="28" rx="4"/>
+  <text x="577" y="684" text-anchor="middle" class="key-text leader-text">SPC sh</text>
+  <text x="615" y="684" class="desc">Signature Help</text>
+  
+  <!-- Leader+fm -->
+  <rect class="key leader-key" x="550" y="703" width="55" height="28" rx="4"/>
+  <text x="577" y="722" text-anchor="middle" class="key-text leader-text">SPC fm</text>
+  <text x="615" y="722" class="desc">Format current file</text>
+  
+  <!-- ===== LINE NUMBERS & MISC ===== -->
+  <text x="40" y="820" class="category-title" fill="#ff7b72">● Line Numbers &amp; Misc</text>
+  
+  <!-- Leader+n -->
+  <rect class="key leader-key" x="40" y="835" width="50" height="28" rx="4"/>
+  <text x="65" y="854" text-anchor="middle" class="key-text leader-text">SPC n</text>
+  <text x="100" y="854" class="desc">Toggle line numbers</text>
+  
+  <!-- Leader+rn -->
+  <rect class="key leader-key" x="40" y="873" width="55" height="28" rx="4"/>
+  <text x="67" y="892" text-anchor="middle" class="key-text leader-text">SPC rn</text>
+  <text x="105" y="892" class="desc">Toggle relative numbers</text>
+  
+  <!-- Leader+e -->
+  <rect class="key leader-key" x="40" y="911" width="50" height="28" rx="4"/>
+  <text x="65" y="930" text-anchor="middle" class="key-text leader-text">SPC e</text>
+  <text x="100" y="930" class="desc">Toggle diagnostics (Trouble)</text>
+</svg>

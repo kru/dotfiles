@@ -12,8 +12,6 @@ MNML_PROMPT=('mnml_cwd 1 0' mnml_git)
 MNML_RPROMPT=()
 MNML_INFOLN=()
 
-#PROMPT="$(_mnml_wrap MNML_PROMPT)
-#╰─%B\$'\\u2192' ➤ %b"
 PROMPT='$(_mnml_wrap MNML_PROMPT)
 ${prompt_newline}%{%(?.%F{green}.%F{red})%}➤ %b'
 # Enable prefix-based history search with up/down arrows (exact Oh My Zsh style)
@@ -96,3 +94,8 @@ export PATH="$PATH:$HOME/github.com/ols"
 export PATH="$PATH:$HOME/Odin"
 export ODIN_ROOT="$HOME/Odin"
 export PATH="$PATH:$HOME/github.com/kru/eztracker"
+export PATH="$HOME/node-v20.20.0-linux-x64:$PATH"
+export PATH="$HOME/node-v20.20.0-linux-x64/bin:$PATH"
+export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
+
+. "$HOME/.local/bin/env"
